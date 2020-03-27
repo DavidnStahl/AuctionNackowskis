@@ -16,14 +16,47 @@ const ShowAuctionsList = () => {
     useEffect(() => {
     },[AuctionsToShow,setAuctionsToShow])
 
-    return (
+  
+       
+            return(
         <div className="container text-center">
-        {/*Här har du ett exemple marwan hur du får ut titlarna*/}
+        
+               
+            <table>
+            <thead>
+    <tr>
+      <th scope="col">Titel</th>
+      <th scope="col">beskrivning</th>
+      <th scope="col">endDate</th>
+      <th scope="col">Utropspris</th>
+      <th scope="col">SkapadAv</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      
            {AuctionsToShow.map((auction) =>{
-               return <p>{auction.Titel}</p>
-           })}
+              return <div>
+            
+             <tr>
+             <th scope="row"></th>
+             <td>{auction.Titel}</td>
+             <td>{auction.beskrivning}</td>
+             <td>{auction.endDate}</td>
+             <td>{auction.Utropspris}</td>
+             <td>{auction.SkapadAv}</td>
+           </tr>
+             </div>
+               }
+                
+           )}
+           
+           </tbody>
+           </table>
         </div>
-    )
+        )
+
+    
 }
 
 export default ShowAuctionsList

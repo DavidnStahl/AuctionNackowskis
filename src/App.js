@@ -5,7 +5,6 @@ import Navigation from './Components/Navigation'
 import Main from './Components/Main'
 import SaveNewAuctionContext from './Contexts/SaveNewAuctionContext';
 import GetOpenAuctionsContext from './Contexts/GetOpenAuctionsContext';
-
 function App() {
   return (
     <div>
