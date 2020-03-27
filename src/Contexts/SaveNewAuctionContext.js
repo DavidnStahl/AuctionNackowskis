@@ -7,8 +7,8 @@ const url = "https://nackowskis.azurewebsites.net/api/Auktion/2240"
 const SaveNewAuctionContextProvider = (props) => {
     const [NewAuctionData, setNewAuctionData] = useState();
     
-     const AddNewAuction = () => {
-      let startDate = new Date()
+     const AddNewAuction = (data) => {
+      /*let startDate = new Date()
       let endDate = new Date();
       endDate.setHours(endDate.getHours() + 60);
       const dataToUse = {
@@ -19,10 +19,10 @@ const SaveNewAuctionContextProvider = (props) => {
         "Gruppkod": 2240,
         "Utropspris": 1000,
         "SkapadAv": "David"
-      }
+      }*/
          fetch(url,{
           method: 'POST',
-          body: JSON.stringify(dataToUse),
+          body: JSON.stringify(data),
           headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
