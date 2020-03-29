@@ -10,6 +10,8 @@ const DetailViewAuction = props => {
     getSelectedAuctionData
   ] = useContext(DetailViewAuctionContext);
 
+  //Kasta in en useEffect? som hämtar datat, inte när komponenten renderas första gången, men när motsvarande view details knapp i parent (ShowAucttionList) trycks
+
   //
   return (
     <tr hidden={!props.isShowing}>
