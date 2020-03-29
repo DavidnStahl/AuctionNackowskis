@@ -1,5 +1,5 @@
 import React,{useContext,useEffect} from 'react'
-import {GetOpenAuctionsContext} from '../Contexts/GetOpenAuctionsContext';
+import {GetAuctionsContext} from '../Contexts/GetAuctionsContext';
 ///Din komponent marwan////
 //när programmet startar kommer getOpenAuctions köras
 // useEffect kommer rendera din komponent när david har hämtat data från databasen å gjort en setAuctionsToShow(data)
@@ -7,11 +7,15 @@ import {GetOpenAuctionsContext} from '../Contexts/GetOpenAuctionsContext';
 // så du kommer kunna använda AuctionsToShow för ditt table, där du kan lista ut alla auctions.
 
 const ShowAuctionsList = () => {
-    const [AuctionsToShow, setAuctionsToShow,getOpenAuctions] = useContext(GetOpenAuctionsContext);
+    const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext);
     //getOpenAuctions hämtar data från databasen å sparar det i AuctionsToShow i GetOpenAuctionsContext.
     useEffect(() => {
-        getOpenAuctions();
+       getOpenAuctions();
     },[])
+
+    useEffect(() => {
+      
+  },[setAuctionsToShow])
   ///här renderar du om din komponent när data är hämtat
     useEffect(() => {
     },[AuctionsToShow,setAuctionsToShow])

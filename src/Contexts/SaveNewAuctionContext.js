@@ -4,11 +4,9 @@ export const SaveNewAuctionContext = createContext();
 
 const url = "https://nackowskis.azurewebsites.net/api/Auktion/2240"
 
-const SaveNewAuctionContextProvider = (props) => {
-    const [NewAuctionData, setNewAuctionData] = useState();
-    
-     const AddNewAuction = (data) => {
-      /*let startDate = new Date()
+//såhär ska data objectet sättas för att post ska fungera
+
+/*let startDate = new Date()
       let endDate = new Date();
       endDate.setHours(endDate.getHours() + 60);
       const dataToUse = {
@@ -20,6 +18,11 @@ const SaveNewAuctionContextProvider = (props) => {
         "Utropspris": 1000,
         "SkapadAv": "David"
       }*/
+
+const SaveNewAuctionContextProvider = (props) => {
+    const [NewAuctionData, setNewAuctionData] = useState();
+    
+     const AddNewAuction = (data) => {
          fetch(url,{
           method: 'POST',
           body: JSON.stringify(data),

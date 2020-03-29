@@ -2,8 +2,6 @@ import React, {createContext,useState} from 'react';
 
 export const LoginContext = createContext();
 
-const url = "https://nackowskis.azurewebsites.net/api/Auktion/2240"
-
 const LoginContextProvider = (props) => {
     const [loginName, setLoginName] = useState();
     const [loginError, setLoginError] = useState();
@@ -15,8 +13,7 @@ const LoginContextProvider = (props) => {
             setLoginName(name);
         }else{
           setLoginError("minimum characters is 2")
-        }
-     
+        }    
     }
     const setLocalStorageUser = (name) => {
         console.log(name)
@@ -35,8 +32,7 @@ const LoginContextProvider = (props) => {
         }else {
             let arr = [name]
             localStorage.setItem("users",JSON.stringify(arr))
-        }
-       
+        }       
     }
      return (
           <LoginContext.Provider value={[loginName, setLoginName,setSessionUser,loginError, setLoginError]}>
@@ -44,5 +40,4 @@ const LoginContextProvider = (props) => {
           </LoginContext.Provider>
   )   
 }
-
 export default LoginContextProvider
