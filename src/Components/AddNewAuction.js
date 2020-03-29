@@ -55,7 +55,7 @@ const AddNewAuction = () => {
             "Utropspris": estimate,
             "SkapadAv": createdBy
         }
-
+        
         console.log(auction);
 
         AddNewAuction(auction);
@@ -63,7 +63,7 @@ const AddNewAuction = () => {
 
     return (
         <React.Fragment>
-        <form>
+        
         <label>Titel</label>
         <br />
         <input type="text" ref={(text) => title = text}/>
@@ -88,7 +88,7 @@ const AddNewAuction = () => {
         <br />
         <input type="text" ref={(name) => createdBy = name}/>
         <br /><br />
-        <input type="submit" onClick={
+        <button className="btn btn-primary" onClick={
             () => {
                 saveData(title.value, 
                 description.value, 
@@ -97,9 +97,9 @@ const AddNewAuction = () => {
                 estimate.value,
                 createdBy.value);
             }
-        } value="Spara" />
+        }>Spara Auktion</button>
             
-        </form>
+        
         </React.Fragment>
     );
 }
