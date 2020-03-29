@@ -5,9 +5,14 @@ import {LoginContext} from '../Contexts/LoginContext';
 const Login = () => {
     const [loginName, setLoginName,setSessionUser,loginError, setLoginError] = useContext(LoginContext);
     const name = useRef()
+    
     useEffect(() => {
     
     },[loginError,setSessionUser])
+
+    useEffect(() => {
+        setLoginError("")
+    },[])
 
     return (
         <div className="container text-center">
