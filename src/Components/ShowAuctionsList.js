@@ -49,7 +49,7 @@ const ShowAuctionsList = () => {
              <td>{auction.SlutDatum}</td>
              <td>{auction.Utropspris}</td>
              <td>{auction.SkapadAv}</td>
-             <td>button</td>
+             <td><button>Details for auction</button></td>
            </tr>
            </React.Fragment>
                }
