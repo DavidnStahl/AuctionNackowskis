@@ -13,8 +13,7 @@ const LoginContextProvider = (props) => {
             sessionStorage.setItem("user",name)
             setLocalStorageUser(name);
             setLoginName(name);
-            history.push('/')
-            
+            history.push('/')           
         }else{
           setLoginError("minimum characters is 2")
         }    
