@@ -1,5 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GetAuctionsContext } from "../Contexts/GetAuctionsContext";
+import DetailViewAuction from "./DetailViewAuction";
 ///Din komponent marwan////
 //när programmet startar kommer getOpenAuctions köras
 // useEffect kommer rendera din komponent när david har hämtat data från databasen å gjort en setAuctionsToShow(data)
@@ -7,6 +8,8 @@ import { GetAuctionsContext } from "../Contexts/GetAuctionsContext";
 // så du kommer kunna använda AuctionsToShow för ditt table, där du kan lista ut alla auctions.
 
 const ShowAuctionsList = () => {
+  const [isShowingDetails, setIsShowingDetails] = useState([]);
+
   const [
     AuctionsToShow,
     setAuctionsToShow,
@@ -21,6 +24,21 @@ const ShowAuctionsList = () => {
   useEffect(() => {}, [setAuctionsToShow]);
   ///här renderar du om din komponent när data är hämtat
   useEffect(() => {}, [AuctionsToShow, setAuctionsToShow]);
+
+  useEffect(() => {}, [setAuctionsToShow]);
+
+  //Visar eller döljer DetailViewAuction
+  const showDetails = e => {
+    console.log(isShowingDetails);
+
+    if (isShowingDetails.indexOf(e.target.value) > -1) {
+      let newState = isShowingDetails.filter(id => id != e.target.value);
+      console.log(newState);
+      return setIsShowingDetails(newState);
+    }
+
+    setIsShowingDetails(isShowingDetails.concat(e.target.value));
+  };
 
   return (
     <div className="container text-center">
@@ -46,9 +64,21 @@ const ShowAuctionsList = () => {
                   <td>{auction.Utropspris}</td>
                   <td>{auction.SkapadAv}</td>
                   <td>
-                    <button key={auction.id}>Details for auction</button>
+                    <button
+                      key={auction.AuktionID}
+                      value={auction.AuktionID}
+                      onClick={e => showDetails(e)}
+                    >
+                      Show Auction Details
+                    </button>
                   </td>
                 </tr>
+                <DetailViewAuction
+                  key={auction.AuktionID}
+                  isShowing={isShowingDetails.includes(
+                    auction.AuktionID.toString()
+                  )}
+                />
               </React.Fragment>
             );
           })}

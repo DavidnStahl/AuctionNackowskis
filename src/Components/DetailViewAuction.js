@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
 
 const DetailViewAuction = props => {
@@ -12,8 +12,10 @@ const DetailViewAuction = props => {
 
   //
   return (
-    <>
-      <div></div>
-    </>
+    <tr hidden={!props.isShowing}>
+      <td colSpan="6">ID: {props.key}</td>
+    </tr>
   );
 };
+
+export default DetailViewAuction;
