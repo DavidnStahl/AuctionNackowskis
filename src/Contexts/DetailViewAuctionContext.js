@@ -69,8 +69,7 @@ const DetailViewAuctionContextProvider = (props) => {
     },[])*/
 
     useEffect(() => {
-
-    },[DetailDataForAuction, setDetailDataForAuction])
+    },[DetailDataForAuction, setDetailDataForAuction,])
 
     const getDataToAuctionDetailList = async (id) =>{
                 let url_Get_Auction_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240?id=${id}`;

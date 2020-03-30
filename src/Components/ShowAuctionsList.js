@@ -24,7 +24,7 @@ const ShowAuctionsList = () => {
 
   useEffect(() => {}, [setAuctionsToShow]);
   ///här renderar du om din komponent när data är hämtat
-  useEffect(() => {}, [AuctionsToShow, setAuctionsToShow]);
+  useEffect(() => {}, [AuctionsToShow, setAuctionsToShow,]);
 
   useEffect(() => {}, [setAuctionsToShow]);
 
