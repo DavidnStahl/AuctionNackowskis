@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GetAuctionsContext } from "../Contexts/GetAuctionsContext";
+import AuctionsListItem from "./AuctionsListItem";
 import DetailViewAuction from "./DetailViewAuction";
 ///Din komponent marwan////
 //när programmet startar kommer getOpenAuctions köras
@@ -57,23 +58,18 @@ const ShowAuctionsList = () => {
           {AuctionsToShow.map(auction => {
             return (
               <React.Fragment>
-                <tr>
-                  <td>{auction.Titel}</td>
-                  <td>{auction.Beskrivning}</td>
-                  <td>{auction.SlutDatum}</td>
-                  <td>{auction.Utropspris}</td>
-                  <td>{auction.SkapadAv}</td>
-                  <td>
-                    <button
-                      key={auction.AuktionID}
-                      value={auction.AuktionID}
-                      onClick={e => showDetails(e)}
-                    >
-                      Show Auction Details
-                    </button>
-                  </td>
-                </tr>
+                <AuctionsListItem
+                  id={auction.AuktionID}
+                  key={auction.AuktionID}
+                  titel={auction.Titel}
+                  beskrivning={auction.Beskrivning}
+                  slutDatum={auction.SlutDatum}
+                  utropspris={auction.Utropspris}
+                  skapadAv={auction.SkapadAv}
+                  event={showDetails}
+                />
                 <DetailViewAuction
+                  id={auction.AuktionID}
                   key={auction.AuktionID}
                   isShowing={isShowingDetails.includes(
                     auction.AuktionID.toString()
