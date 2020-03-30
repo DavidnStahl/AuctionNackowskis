@@ -8,23 +8,14 @@ const DetailItem = (props) => {
     
     let [bid, bidder] = useState();
 
-    function saveEstimate(sum, auctionID, bidder)
+    function saveEstimate(sum)
     {
-        
-       /* var bid = {
-            "Summa": sum,
-            "AuktionID": auctionID,
-            "Budgivare": bidder
-        }*/
-         
-        // Post
         createBidOnAuction({
             "Summa": parseInt(sum),
-            "AuktionID": auctionID,
+            "AuktionID": props.id,
             "Budgivare": sessionStorage.getItem("user")
         });
 
-        //console.log(bid);
     }
     
     
@@ -50,13 +41,8 @@ const DetailItem = (props) => {
         <table>{tableContent}</table>
         
         <label>Mitt bud:</label>
-        <input type="text" ref={(text) => bid = text}/>
-        
-        <br /><br />
-
-        <label>Mitt namn:</label>
-        <input type="text" ref={(text) => bidder = text}/>
-        
+        <input type="text" ref={(text) => bid = text}/>       
+       
         <br /><br />
 
         <button class="btn btn-primary" onClick={
