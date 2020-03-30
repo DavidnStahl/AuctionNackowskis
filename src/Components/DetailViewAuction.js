@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
 
 const DetailViewAuction = props => {
-  const [isShow, setIsShow] = [props.isShowing];
-  const [auctionDetails, setAuctionDetails] = useState([]);
   const [auctionListItemData, setauctionListItemData] = useState([]);
   const [ListItemVersion, setListItemVersion] = useState([]);
 
@@ -16,12 +14,12 @@ const DetailViewAuction = props => {
     getDataToAuctionDetailList
   ] = useContext(DetailViewAuctionContext);
 
-     useEffect(() => {
+  useEffect(() => {
     GetDetails(props.isShowing);
-
-  },[props.isShowing]); 
+  }, [props.isShowing]);
 
   useEffect(() => {
+<<<<<<< HEAD
     console.log(auctionListItemData[0])
     if(auctionListItemData[0] !== undefined){
       setListItemVersion(() => {
@@ -46,6 +44,15 @@ const DetailViewAuction = props => {
       
       setauctionListItemData(data)
       
+=======
+    console.log(auctionListItemData);
+  }, [auctionListItemData, setauctionListItemData]);
+
+  const GetDetails = async bolean => {
+    if (bolean === true) {
+      let data = await getDataToAuctionDetailList(props.id);
+      setauctionListItemData(data);
+>>>>>>> 65e59833ce9fc35e1f2fddd2c961da2d68538c5c
     }
   };
 
@@ -55,9 +62,13 @@ const DetailViewAuction = props => {
   return (
     <tr hidden={!props.isShowing}>
       <td colSpan="6">
+<<<<<<< HEAD
         <div>
           ID: {props.id} , detalj1 {auctionDetails} , {ListItemVersion}
         </div>
+=======
+        <div>ID: {props.id} , detalj</div>
+>>>>>>> 65e59833ce9fc35e1f2fddd2c961da2d68538c5c
       </td>
     </tr>
   );
