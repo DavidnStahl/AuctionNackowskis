@@ -52,7 +52,7 @@ const DetailViewAuction = props => {
     <tr hidden={!props.isShowing}>
       <td colSpan="6">
         <div>ID: {props.id} , detalj , {ListItemVersion}</div> 
-         <DetailItem id= {props.id} auctionDetails = {auctionDetails}/>
+         <DetailItem id= {props.id} auctionDetails = {auctionListItemData}/>
       </td>
     </tr>
   );
