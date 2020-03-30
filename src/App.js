@@ -8,6 +8,7 @@ import GetAuctionsContext from './Contexts/GetAuctionsContext';
 import LoginContext from './Contexts/LoginContext';
 import DetailViewAuctionContext from './Contexts/DetailViewAuctionContext';
 
+
 function App() {
   return (
     <div>

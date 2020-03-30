@@ -18,17 +18,18 @@ const url = "https://nackowskis.azurewebsites.net/api/Auktion/2240"
         "Utropspris": 1000,
         "SkapadAv": "David"
       }*/
+     
 
 const SaveNewAuctionContextProvider = (props) => {
     const [NewAuctionData, setNewAuctionData] = useState();
     
     useEffect(() => {
-      console.log(NewAuctionData)
+      //console.log(NewAuctionData)
     }, [NewAuctionData, setNewAuctionData])
 
      const AddNewAuction = (data) => {
       setNewAuctionData(data)
-       console.log(data)
+       //console.log(data)
          fetch(url,{
           method: 'POST',
           body: JSON.stringify(data),
