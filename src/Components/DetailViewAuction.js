@@ -20,12 +20,12 @@ const DetailViewAuction = props => {
   }, [props.isShowing]);
 
   useEffect(() => {
-    console.log(auctionListItemData);
-    console.log(auctionListItemData[0])
+    //console.log(auctionListItemData);
+    //console.log(auctionListItemData[0])
     if(auctionListItemData[0] !== undefined){
       setListItemVersion(() => {
-        console.log(auctionListItemData[0].SkapadAv)
-        console.log(sessionStorage.getItem("user"))
+        //console.log(auctionListItemData[0].SkapadAv)
+        //console.log(sessionStorage.getItem("user"))
         if(auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") && auctionListItemData[1].length === 0){
           return ("ListState: egen auction som är tom och går att ta bort och uppdatera")
         }else if(auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") && auctionListItemData[1].length !== 0){

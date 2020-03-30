@@ -14,14 +14,16 @@ function App() {
     <div>
     
     <SaveNewAuctionContext>
-    <GetAuctionsContext>
+    
     <LoginContext>
     <DetailViewAuctionContext>
+    <GetAuctionsContext>
        <Navigation/>
        <Main/>
+       </GetAuctionsContext>
     </DetailViewAuctionContext>
     </LoginContext>
-    </GetAuctionsContext>
+    
     </SaveNewAuctionContext>
        
     </div>

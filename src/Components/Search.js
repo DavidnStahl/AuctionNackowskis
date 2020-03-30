@@ -1,23 +1,22 @@
 import {GetAuctionsContext} from '../Contexts/GetAuctionsContext';
-import React,{useContext,useEffect,useState} from 'react'
+import React,{useContext,useEffect,useState,useRef} from 'react'
 
 function Search()
 {
-    const [name, setName] = useState("");
+    const searchword = useRef();
     const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext);
 
-  const handleSubmit = (evt) => {
-      evt.preventDefault();
-      getSearchedResultAuctions(name);
+  const handleSubmit = (search) => {
+      getSearchedResultAuctions(search);
   }
         
         return(
             <div>
-            <form onSubmit={handleSubmit}> 
-            <input type="text" name="search" onChange={e => setName(e.target.value)}/><br/>
+             
+            <input type="text" name="search" ref={searchword}/><br/>
 
-            <button>Search </button>
-         </form>
+            <button onClick={() => handleSubmit(searchword.current.value)}>Search </button>
+         
          </div>
 
         )

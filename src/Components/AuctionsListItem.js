@@ -1,6 +1,11 @@
-import React from "react";
+import React,{useEffect,useContext} from "react";
+import { GetAuctionsContext } from "../Contexts/GetAuctionsContext";
 
 const AuctionsListItem = props => {
+ const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext)
+  useEffect(() => {
+  },[getSearchedResultAuctions])
+
   /*     key={auction.AuktionID}
     titel={auction.Titel}
     beskrivning={auction.Beskrivning}
