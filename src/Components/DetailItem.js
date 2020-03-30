@@ -4,22 +4,27 @@ import {DetailViewAuctionContext} from '../Contexts/DetailViewAuctionContext';
 
 const DetailItem = (props) => {
 
-    const [getAuctionBiddingData, createBidOnAuction] = useContext(DetailViewAuctionContext);
+    const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction] = useContext(DetailViewAuctionContext);
     
     let [bid, bidder] = useState();
 
     function saveEstimate(sum, auctionID, bidder)
     {
-        var bid = {
-            Summa: sum,
-            AuktionID: auctionID,
-            Budgivare: bidder
-        }
-
+        
+       /* var bid = {
+            "Summa": sum,
+            "AuktionID": auctionID,
+            "Budgivare": bidder
+        }*/
+         
         // Post
-        createBidOnAuction(bid);
+        createBidOnAuction({
+            "Summa": parseInt(sum),
+            "AuktionID": auctionID,
+            "Budgivare": sessionStorage.getItem("user")
+        });
 
-        console.log(bid);
+        //console.log(bid);
     }
     
     

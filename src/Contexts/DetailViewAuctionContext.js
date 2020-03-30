@@ -119,7 +119,7 @@ const DetailViewAuctionContextProvider = (props) => {
     }
                              
      return (
-          <DetailViewAuctionContext.Provider value={[DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList]}>
+          <DetailViewAuctionContext.Provider value={[DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction]}>
             {props.children}
           </DetailViewAuctionContext.Provider>
   )   
