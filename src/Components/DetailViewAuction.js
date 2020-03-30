@@ -5,6 +5,7 @@ const DetailViewAuction = props => {
   const [isShow, setIsShow] = [props.isShowing];
   const [auctionDetails, setAuctionDetails] = useState([]);
   const [auctionListItemData, setauctionListItemData] = useState([]);
+  const [ListItemVersion, setListItemVersion] = useState([]);
 
   const [
     DetailDataForAuction,
@@ -21,14 +22,30 @@ const DetailViewAuction = props => {
   },[props.isShowing]); 
 
   useEffect(() => {
-    console.log(auctionListItemData)
-
+    console.log(auctionListItemData[0])
+    if(auctionListItemData[0] !== undefined){
+      setListItemVersion(() => {
+        console.log(auctionListItemData[0].SkapadAv)
+        console.log(sessionStorage.getItem("user"))
+        if(auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") && auctionListItemData[1].length === 0){
+          return ("ListState: egen auction som är tom och går att ta bort och uppdatera")
+        }else if(auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") && auctionListItemData[1].length !== 0){
+          return ("ListState: egen auction som har bud och går inte att ta bort eller uppdatera")
+        }else if(auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user")){
+          return ("ListState: annans auction som går att buda på")
+        }
+       
+      })
+    }
+    
   },[auctionListItemData, setauctionListItemData]);
 
   const GetDetails = async bolean => {
     if (bolean === true) {
       let data = await getDataToAuctionDetailList(props.id)
+      
       setauctionListItemData(data)
+      
     }
   };
 
@@ -39,7 +56,7 @@ const DetailViewAuction = props => {
     <tr hidden={!props.isShowing}>
       <td colSpan="6">
         <div>
-          ID: {props.id} , detalj1 {auctionDetails}
+          ID: {props.id} , detalj1 {auctionDetails} , {ListItemVersion}
         </div>
       </td>
     </tr>

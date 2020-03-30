@@ -7,23 +7,7 @@ const DetailViewAuctionContextProvider = (props) => {
     const [BiddingDataForAuction, setBiddingDataForAuction] = useState();
     const [DetailViewItemToShow, setDetailViewItemToShow] = useState([]);
     
-    /*useEffect(()=> {
-        getSelectedAuctionData(4606)
-
-            console.log("hej")
-            console.log(DetailDataForAuction)       
-        //detailViewActionStateHandler(DetailDataForAuction)
-    },[]);
-
-    useEffect(()=> {
-            console.log(DetailDataForAuction)       
-        detailViewActionStateHandler(DetailDataForAuction)
-    },[DetailDataForAuction])
-
-    /*useEffect(()=> {
-        console.log("Kollar så att detailViewActionStateHandler fungerar ")
-        detailViewActionStateHandler(DetailDataForAuction)
-    },[[DetailDataForAuction, setDetailDataForAuction]])*/
+    
 
     /*const detailViewActionStateHandler = async (data) => {
         if(data !== undefined){
@@ -75,32 +59,16 @@ const DetailViewAuctionContextProvider = (props) => {
         })*/
         //getSelectedAuctionData(4606);//
         
-
-        //getAuctionBiddingData(4605)
-        /*createBidOnAuction({
+        /*useEffect(() => {
+        //getAuctionBiddingData(4665)
+        createBidOnAuction({
             "Summa": 4000,
-            "AuktionID": 4605,
+            "AuktionID": 4665,
             "Budgivare": "David test"
         })
     },[])*/
 
-    /*useEffect(() => {
-        const getSelectedAuctionData =  async (id) =>{
-            let url_Get_Auction_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240?id=${id}`;
-             await fetch(url_Get_Auction_By_AuctionID).then(res => res.json()).then((data1) => {setDetailDataForAuction(data1)
-                let url_Get_BiddingData_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Bud/2240?id=${id}`;
-                fetch(url_Get_BiddingData_By_AuctionID).then(res => res.json()).then((data2) => {setBiddingDataForAuction(data2)
-                    let array = [data1,data2]
-                    console.log(array)
-                return array})})}
-                
-                 /*return array})
-            let biddingdata = await getAuctionBiddingData(id)
-            let array = [auction,biddingdata]
-            return array}
-            let x = getSelectedAuctionData(4606);
-            console.log(x)
-    },[])*/
+    
 
     const getDataToAuctionDetailList = async (id) =>{
                 let url_Get_Auction_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240?id=${id}`;
@@ -108,12 +76,7 @@ const DetailViewAuctionContextProvider = (props) => {
                 let url_Get_BiddingData_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Bud/2240?id=${id}`;
                 let b = await fetch(url_Get_BiddingData_By_AuctionID).then(res => res.json())
                 return [a,b]
-    }
-    /*useEffect(() => {
-        console.log(DetailDataForAuction)
-        
-        //console.log(BiddingDataForAuction)
-    },[DetailDataForAuction,setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction])*/
+    }   
 
     const getSelectedAuctionData =  async (id) =>{
     let url_Get_Auction_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240?id=${id}`;
