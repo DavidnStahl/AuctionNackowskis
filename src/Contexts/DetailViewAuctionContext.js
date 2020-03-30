@@ -84,7 +84,7 @@ const DetailViewAuctionContextProvider = (props) => {
         })
     },[])*/
 
-    useEffect(() => {
+    /*useEffect(() => {
         const getSelectedAuctionData =  async (id) =>{
             let url_Get_Auction_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240?id=${id}`;
              await fetch(url_Get_Auction_By_AuctionID).then(res => res.json()).then((data1) => {setDetailDataForAuction(data1)
@@ -97,11 +97,26 @@ const DetailViewAuctionContextProvider = (props) => {
                  /*return array})
             let biddingdata = await getAuctionBiddingData(id)
             let array = [auction,biddingdata]
-            return array}*/
+            return array}
             let x = getSelectedAuctionData(4606);
             console.log(x)
-    },[])
+    },[])*/
 
+    const getDataToAuctionDetailList = async (id) =>{
+        
+            /*let url_Get_Auction_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240?id=${id}`;
+              return await fetch(url_Get_Auction_By_AuctionID).then(res => res.json()).then(async (data1) => {setDetailDataForAuction(data1)
+                let url_Get_BiddingData_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Bud/2240?id=${id}`;
+                 await fetch(url_Get_BiddingData_By_AuctionID).then(res => res.json()).then((data2) => {setBiddingDataForAuction(data2)
+                    let array = [data1,data2]
+                    //console.log(array)
+                })})*/
+                let url_Get_Auction_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240?id=${id}`;
+                let a = await fetch(url_Get_Auction_By_AuctionID).then(res => res.json())
+                let url_Get_BiddingData_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Bud/2240?id=${id}`;
+                let b = await fetch(url_Get_BiddingData_By_AuctionID).then(res => res.json())
+                return [a,b]
+    }
     /*useEffect(() => {
         console.log(DetailDataForAuction)
         
@@ -149,7 +164,7 @@ const DetailViewAuctionContextProvider = (props) => {
     }
                              
      return (
-          <DetailViewAuctionContext.Provider value={[DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData]}>
+          <DetailViewAuctionContext.Provider value={[DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList]}>
             {props.children}
           </DetailViewAuctionContext.Provider>
   )   

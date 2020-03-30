@@ -14,13 +14,15 @@ const DetailViewAuction = props => {
     getDataToAuctionDetailList
   ] = useContext(DetailViewAuctionContext);
 
-  /*   useEffect(() => {
-    setAuctionDetails(GetDetails(props.isShowing));
-    console.log(auctionDetails);
-  }, []); */
+     useEffect(() => {
+    GetDetails(props.isShowing);
+
+  },[]); 
 
   const GetDetails = async bolean => {
     if (bolean === false) {
+      let x = await getDataToAuctionDetailList(4606)
+      console.log(x)
       return await getDataToAuctionDetailList;
     }
     return null;
