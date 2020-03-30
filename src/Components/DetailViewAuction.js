@@ -4,6 +4,7 @@ import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
 const DetailViewAuction = props => {
   const [isShow, setIsShow] = [props.isShowing];
   const [auctionDetails, setAuctionDetails] = useState([]);
+  const [auctionListItemData, setauctionListItemData] = useState([]);
 
   const [
     DetailDataForAuction,
@@ -19,13 +20,16 @@ const DetailViewAuction = props => {
 
   },[props.isShowing]); 
 
+  useEffect(() => {
+    console.log(auctionListItemData)
+
+  },[auctionListItemData, setauctionListItemData]);
+
   const GetDetails = async bolean => {
     if (bolean === true) {
-      let x = await getDataToAuctionDetailList(4606)
-      console.log(x)
-      return await getDataToAuctionDetailList;
+      let data = await getDataToAuctionDetailList(props.id)
+      setauctionListItemData(data)
     }
-    return null;
   };
 
   //Kasta in en useEffect? som hämtar datat, inte när komponenten renderas första gången, men när motsvarande view details knapp i parent (ShowAucttionList) trycks
