@@ -19,7 +19,7 @@ const DetailViewAuction = props => {
   }, [props.isShowing]);
 
   useEffect(() => {
-<<<<<<< HEAD
+    console.log(auctionListItemData);
     console.log(auctionListItemData[0])
     if(auctionListItemData[0] !== undefined){
       setListItemVersion(() => {
@@ -35,24 +35,12 @@ const DetailViewAuction = props => {
        
       })
     }
-    
-  },[auctionListItemData, setauctionListItemData]);
-
-  const GetDetails = async bolean => {
-    if (bolean === true) {
-      let data = await getDataToAuctionDetailList(props.id)
-      
-      setauctionListItemData(data)
-      
-=======
-    console.log(auctionListItemData);
   }, [auctionListItemData, setauctionListItemData]);
 
   const GetDetails = async bolean => {
     if (bolean === true) {
       let data = await getDataToAuctionDetailList(props.id);
       setauctionListItemData(data);
->>>>>>> 65e59833ce9fc35e1f2fddd2c961da2d68538c5c
     }
   };
 
@@ -62,13 +50,7 @@ const DetailViewAuction = props => {
   return (
     <tr hidden={!props.isShowing}>
       <td colSpan="6">
-<<<<<<< HEAD
-        <div>
-          ID: {props.id} , detalj1 {auctionDetails} , {ListItemVersion}
-        </div>
-=======
-        <div>ID: {props.id} , detalj</div>
->>>>>>> 65e59833ce9fc35e1f2fddd2c961da2d68538c5c
+        <div>ID: {props.id} , detalj , {ListItemVersion}</div> 
       </td>
     </tr>
   );
