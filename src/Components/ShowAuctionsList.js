@@ -1,5 +1,7 @@
-import React,{useContext,useEffect} from 'react'
-import {GetOpenAuctionsContext} from '../Contexts/GetOpenAuctionsContext';
+import React, { useContext, useEffect, useState } from "react";
+import { GetAuctionsContext } from "../Contexts/GetAuctionsContext";
+import AuctionsListItem from "./AuctionsListItem";
+import DetailViewAuction from "./DetailViewAuction";
 ///Din komponent marwan////
 //när programmet startar kommer getOpenAuctions köras
 // useEffect kommer rendera din komponent när david har hämtat data från databasen å gjort en setAuctionsToShow(data)
@@ -7,56 +9,79 @@ import {GetOpenAuctionsContext} from '../Contexts/GetOpenAuctionsContext';
 // så du kommer kunna använda AuctionsToShow för ditt table, där du kan lista ut alla auctions.
 
 const ShowAuctionsList = () => {
-    const [AuctionsToShow, setAuctionsToShow,getOpenAuctions] = useContext(GetOpenAuctionsContext);
-    //getOpenAuctions hämtar data från databasen å sparar det i AuctionsToShow i GetOpenAuctionsContext.
-    useEffect(() => {
-        getOpenAuctions();
-    },[])
+  const [isShowingDetails, setIsShowingDetails] = useState([]);
+
+  const [
+    AuctionsToShow,
+    setAuctionsToShow,
+    getOpenAuctions,
+    getSearchedResultAuctions
+  ] = useContext(GetAuctionsContext);
+  //getOpenAuctions hämtar data från databasen å sparar det i AuctionsToShow i GetOpenAuctionsContext.
+  useEffect(() => {
+    getOpenAuctions();
+  }, []);
+
+  useEffect(() => {}, [setAuctionsToShow]);
   ///här renderar du om din komponent när data är hämtat
-    useEffect(() => {
-    },[AuctionsToShow,setAuctionsToShow])
+  useEffect(() => {}, [AuctionsToShow, setAuctionsToShow]);
 
-  
-       
-            return(
-        <div className="container text-center">
-        
-               
-            <table>
-            <thead>
-    <tr>
-      <th scope="col">Titel</th>
-      <th scope="col">beskrivning</th>
-      <th scope="col">endDate</th>
-      <th scope="col">Utropspris</th>
-      <th scope="col">SkapadAv</th>
+  useEffect(() => {}, [setAuctionsToShow]);
 
-    </tr>
-  </thead>
-  <tbody>
-      
-           {AuctionsToShow.map((auction) =>{
-              return <div>
-            
-             <tr>
-             <th scope="row"></th>
-             <td>{auction.Titel}</td>
-             <td>{auction.beskrivning}</td>
-             <td>{auction.endDate}</td>
-             <td>{auction.Utropspris}</td>
-             <td>{auction.SkapadAv}</td>
-           </tr>
-             </div>
-               }
-                
-           )}
-           
-           </tbody>
-           </table>
-        </div>
-        )
+  //Visar eller döljer DetailViewAuction
+  const showDetails = e => {
+    console.log(isShowingDetails);
 
-    
-}
+    if (isShowingDetails.indexOf(e.target.value) > -1) {
+      let newState = isShowingDetails.filter(id => id != e.target.value);
+      console.log(newState);
+      return setIsShowingDetails(newState);
+    }
 
-export default ShowAuctionsList
+    setIsShowingDetails(isShowingDetails.concat(e.target.value));
+  };
+
+  return (
+    <div className="container text-center">
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">description</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Start price</th>
+            <th scope="col">Created by</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {AuctionsToShow.map(auction => {
+            return (
+              <React.Fragment>
+                <AuctionsListItem
+                  id={auction.AuktionID}
+                  key={auction.AuktionID}
+                  titel={auction.Titel}
+                  beskrivning={auction.Beskrivning}
+                  slutDatum={auction.SlutDatum}
+                  utropspris={auction.Utropspris}
+                  skapadAv={auction.SkapadAv}
+                  event={showDetails}
+                />
+                <DetailViewAuction
+                  id={auction.AuktionID}
+                  key={auction.AuktionID}
+                  isShowing={isShowingDetails.includes(
+                    auction.AuktionID.toString()
+                  )}
+                />
+              </React.Fragment>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default ShowAuctionsList;
