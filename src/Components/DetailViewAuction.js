@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
 
 const DetailViewAuction = props => {
-  const [isShow, setIsShow] = [props.isShowing];
-  const [auctionDetails, setAuctionDetails] = useState([]);
   const [auctionListItemData, setauctionListItemData] = useState([]);
 
   const [
@@ -15,20 +13,18 @@ const DetailViewAuction = props => {
     getDataToAuctionDetailList
   ] = useContext(DetailViewAuctionContext);
 
-     useEffect(() => {
+  useEffect(() => {
     GetDetails(props.isShowing);
-
-  },[props.isShowing]); 
+  }, [props.isShowing]);
 
   useEffect(() => {
-    console.log(auctionListItemData)
-
-  },[auctionListItemData, setauctionListItemData]);
+    console.log(auctionListItemData);
+  }, [auctionListItemData, setauctionListItemData]);
 
   const GetDetails = async bolean => {
     if (bolean === true) {
-      let data = await getDataToAuctionDetailList(props.id)
-      setauctionListItemData(data)
+      let data = await getDataToAuctionDetailList(props.id);
+      setauctionListItemData(data);
     }
   };
 
@@ -38,9 +34,7 @@ const DetailViewAuction = props => {
   return (
     <tr hidden={!props.isShowing}>
       <td colSpan="6">
-        <div>
-          ID: {props.id} , detalj1 {auctionDetails}
-        </div>
+        <div>ID: {props.id} , detalj</div>
       </td>
     </tr>
   );
