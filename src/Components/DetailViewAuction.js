@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
+import DetailItem from './DetailItem';
 
 const DetailViewAuction = props => {
   const [auctionListItemData, setauctionListItemData] = useState([]);
@@ -51,6 +52,7 @@ const DetailViewAuction = props => {
     <tr hidden={!props.isShowing}>
       <td colSpan="6">
         <div>ID: {props.id} , detalj , {ListItemVersion}</div> 
+         <DetailItem id={props.id} auctionDetails = {auctionListItemData}/>
       </td>
     </tr>
   );
