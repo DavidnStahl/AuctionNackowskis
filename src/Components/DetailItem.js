@@ -12,7 +12,7 @@ const DetailItem = (props) => {
             //console.log(DetailDataForAuction[1])
             console.log("1")
                DetailDataForAuction[1].map((items) => {
-                 //console.log(items)
+                 console.log(items)
                   return <h3>{items.Summa}</h3>
             
         })})
@@ -22,8 +22,8 @@ const DetailItem = (props) => {
     },[getSelectedAuctionData])
 
     useEffect(() => {
-
-    },[TableContent, setTableContent])
+     console.log()
+    },[TableContent, setTableContent,getDataToAuctionDetailList])
     let [bid, bidder] = useState();
 
     function saveEstimate(sum)
