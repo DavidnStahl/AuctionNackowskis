@@ -17,10 +17,10 @@ const DetailViewAuction = props => {
      useEffect(() => {
     GetDetails(props.isShowing);
 
-  },[]); 
+  },[props.isShowing]); 
 
   const GetDetails = async bolean => {
-    if (bolean === false) {
+    if (bolean === true) {
       let x = await getDataToAuctionDetailList(4606)
       console.log(x)
       return await getDataToAuctionDetailList;
