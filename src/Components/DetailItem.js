@@ -1,11 +1,29 @@
-import React,{useContext} from 'react'
-import {useState} from 'react';
+import React,{useContext,useEffect,useState} from 'react'
 import {DetailViewAuctionContext} from '../Contexts/DetailViewAuctionContext';
 
 const DetailItem = (props) => {
 
     const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction] = useContext(DetailViewAuctionContext);
-    
+    const [TableContent, setTableContent] = useState();
+
+    useEffect(() => {
+       if(DetailDataForAuction !== undefined){
+        setTableContent(() =>{
+            //console.log(DetailDataForAuction[1])
+            console.log("1")
+               DetailDataForAuction[1].map((items) => {
+                 //console.log(items)
+                  return <h3>{items.Summa}</h3>
+            
+        })})
+       }
+        
+
+    },[getSelectedAuctionData])
+
+    useEffect(() => {
+
+    },[TableContent, setTableContent])
     let [bid, bidder] = useState();
 
     function saveEstimate(sum)
@@ -16,30 +34,13 @@ const DetailItem = (props) => {
             "Budgivare": sessionStorage.getItem("user")
         });
 
-    }
-    
-    
-    // AuktionID behöver skickas hit
-    var bidHistory = props.auctionDetails;
-    //                                     ^.............^
+    };
 
-    let tableContent = bidHistory.map((item) => {
-        
-        return (<tr>
-        <td>
-        {item.Summa}
-        </td>
-        <td>
-            {item.Budgivare}
-        </td>
-        </tr>);
-    });
     return(
         
         <React.Fragment>
         
-        <table>{tableContent}</table>
-        
+        <table>{TableContent}</table>
         <label>Mitt bud:</label>
         <input type="text" ref={(text) => bid = text}/>       
        

@@ -42,6 +42,7 @@ const DetailViewAuction = props => {
     if (bolean === true) {
       let data = await getDataToAuctionDetailList(props.id);
       setauctionListItemData(data);
+      console.log("lal", auctionListItemData)
     }
   };
 
