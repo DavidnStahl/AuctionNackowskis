@@ -94,11 +94,9 @@ const DetailClosedAuctionItem = props => {
                 <th scope="col">Bidder</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
+                
               {TableContent}
-              </tr>
-              </tbody>
+              
             </table>
           </div>
         </div>

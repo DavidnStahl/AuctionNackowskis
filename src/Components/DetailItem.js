@@ -150,7 +150,7 @@ const DetailItem = (props) => {
             <th scope="col">Bid</th>
             <th scope="col">Bidder</th>
           </tr></thead>
-            <tbody><tr>{TableContent}</tr></tbody></table>
+            {TableContent}</table>
             
             </div>
 
