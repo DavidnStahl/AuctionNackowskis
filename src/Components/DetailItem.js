@@ -7,7 +7,14 @@ const DetailItem = (props) => {
     const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction] = useContext(DetailViewAuctionContext);
     const [TableContent, setTableContent] = useState();
     const [TableContent2, setTableContent2] = useState();
+    const [errorMessageBid,seterrorMessageBid] = useState();
+
     useEffect(() => {
+
+    },[props.auctionDetails])
+    
+    useEffect(() => {
+      console.log(props.auctionDetails)
        if(DetailDataForAuction !== undefined){
         DetailDataForAuction[1].sort((a,b) => (b.Summa-a.Summa))
         setTableContent2(() => {
@@ -28,22 +35,72 @@ const DetailItem = (props) => {
                       return x})
 
         }
-    },[getSelectedAuctionData])
+    },[getDataToAuctionDetailList])
 
     useEffect(() => {
-     console.log()
     },[TableContent, setTableContent,getDataToAuctionDetailList])
+
+    useEffect(() => {
+
+    },[props.getdetails])
+
+    useEffect(() => {
+      //props.getdetails(true)
+    },[errorMessageBid,seterrorMessageBid])
+
+    useEffect(() => {
+
+     },[])
 
     let [bid, bidder] = useState();
 
     function saveEstimate(sum)
     {
-
+      console.log(DetailDataForAuction[1])
+      if(DetailDataForAuction[1].length !== 0){
+      let arr = DetailDataForAuction[1].sort((a,b) => (b.Summa-a.Summa))
+     
+      if(arr[0].Summa < sum && DetailDataForAuction[0].Utropspris < sum){
         createBidOnAuction({
-            "Summa": parseInt(sum),
-            "AuktionID": props.id,
-            "Budgivare": sessionStorage.getItem("user")
-        });
+          "Summa": sum,
+          "AuktionID": props.id,
+          "Budgivare": sessionStorage.getItem("user")
+      });       
+      seterrorMessageBid(() =>{
+        return <span className="text-success">Your bid was accepted</span>
+        
+      })
+      props.getdetails(true)
+      }else{
+        //console.log("to low")
+        seterrorMessageBid(() =>{
+          return <span className="text-danger">Too low bid</span>
+          
+      })
+    }
+     }else{
+     
+      if(DetailDataForAuction[0].Utropspris < sum){
+        createBidOnAuction({
+          "Summa": sum,
+          "AuktionID": props.id,
+          "Budgivare": sessionStorage.getItem("user")
+      });       
+      seterrorMessageBid(() =>{
+        return <span className="text-success">Your bid was accepted</span>
+        
+      })
+      props.getdetails(true)
+      }else{
+        //console.log("to low")
+        seterrorMessageBid(() =>{
+          return <span className="text-danger">Too low bid</span>
+          
+      })
+    }
+     }
+      
+      
         
     };
 
@@ -65,12 +122,12 @@ const DetailItem = (props) => {
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
             <th scope="col">Start price</th>
-            <th scope="col">Created by</th>
-            
+            <th scope="col">Created by</th>           
           </tr>
             {TableContent2}</table>
+            {errorMessageBid}<br/>
             <label>My bid:</label>
-        <input type="text" ref={(text) => bid = text}/>       
+        <input type="number" ref={(text) => bid = text}/>       
        
         <br /><br />
 

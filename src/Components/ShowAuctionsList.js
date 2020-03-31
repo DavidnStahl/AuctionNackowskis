@@ -19,10 +19,11 @@ const ShowAuctionsList = () => {
   ] = useContext(GetAuctionsContext);
   //getOpenAuctions hämtar data från databasen å sparar det i AuctionsToShow i GetOpenAuctionsContext.
   useEffect(() => {
-    //getOpenAuctions();
+    console.log("hej")
+    getOpenAuctions();
   },[]);
 
-  useEffect(() => {}, [setAuctionsToShow]);
+  useEffect(() => {}, [AuctionsToShow,setAuctionsToShow]);
   ///här renderar du om din komponent när data är hämtat
   useEffect(() => {}, [AuctionsToShow]);
 
@@ -58,7 +59,6 @@ const ShowAuctionsList = () => {
               <React.Fragment>
                 <AuctionsListItem
                   id={auction.AuktionID}
-                  //key={auction.AuktionID}
                   titel={auction.Titel}
                   beskrivning={auction.Beskrivning}
                   slutDatum={auction.SlutDatum}

@@ -69,7 +69,9 @@ const DetailViewAuctionContextProvider = (props) => {
     },[])*/
 
     useEffect(() => {
-    },[DetailDataForAuction, setDetailDataForAuction,])
+    },[DetailDataForAuction, setDetailDataForAuction])
+
+    
 
     const getDataToAuctionDetailList = async (id) =>{
                 let url_Get_Auction_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240?id=${id}`;
@@ -91,9 +93,9 @@ const DetailViewAuctionContextProvider = (props) => {
         let url_Get_BiddingData_By_AuctionID = `https://nackowskis.azurewebsites.net/api/Bud/2240?id=${id}`;
         await fetch(url_Get_BiddingData_By_AuctionID).then(res => res.json()).then((data) => {setBiddingDataForAuction(data)})}
 
-    const createBidOnAuction = async (data) =>{
+    const createBidOnAuction =  (data) =>{
         let url_create_bid_by_AuctionID = `https://nackowskis.azurewebsites.net/api/Bud/2240/${4605}`;
-        await fetch(url_create_bid_by_AuctionID,{
+         fetch(url_create_bid_by_AuctionID,{
              method: 'POST',
              body: JSON.stringify(data),
              headers: {
@@ -101,7 +103,7 @@ const DetailViewAuctionContextProvider = (props) => {
                'Content-Type': 'application/json'
              }
              }).then(function (data) {
-                 console.log(data)})}
+                 })}
 
     const UpdateAuction =  (data) =>{
         let url_update_Auction_by_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240/${data.AuktionID}`;

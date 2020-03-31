@@ -10,12 +10,8 @@ const GetAuctionsContextProvider = (props) => {
      
 
      useEffect(() => {
-       console.log("test")
-       getOpenAuctions()
      },[])
-   /* useEffect(() => {
-      //console.log(AuctionsToShow)
-    },[setAuctionsToShow,AuctionsToShow])*/
+   
 
     const getSearchedResultAuctions = async (searchInput) =>{      
       await fetch(url).then(res => res.json()).then((data) => {
