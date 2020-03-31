@@ -24,7 +24,6 @@ const DetailViewAuction = props => {
   useEffect(() => {
     
   },[auctionListItemData,setauctionListItemData])
-
   useEffect(() => {
     //console.log(auctionListItemData);
     //console.log(auctionListItemData[0])

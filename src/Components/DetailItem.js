@@ -8,13 +8,19 @@ const DetailItem = (props) => {
     const [TableContent, setTableContent] = useState();
     const [TableContent2, setTableContent2] = useState();
     const [errorMessageBid,seterrorMessageBid] = useState();
+    const [datainfo,setdatainfo] = useState();
 
     useEffect(() => {
+      setdatainfo(props.auctionDetails)
+    },[errorMessageBid,seterrorMessageBid])
 
-    },[props.auctionDetails])
-    
+    useContext(() =>{
+       console.log("hahaha")
+    },[datainfo])  
+
     useEffect(() => {
-      console.log(props.auctionDetails)
+      setdatainfo(props.auctionDetails)
+      console.log(datainfo)
        if(DetailDataForAuction !== undefined){
         DetailDataForAuction[1].sort((a,b) => (b.Summa-a.Summa))
         setTableContent2(() => {
@@ -45,7 +51,7 @@ const DetailItem = (props) => {
     },[props.getdetails])
 
     useEffect(() => {
-      //props.getdetails(true)
+      props.getdetails(true)
     },[errorMessageBid,seterrorMessageBid])
 
     useEffect(() => {
