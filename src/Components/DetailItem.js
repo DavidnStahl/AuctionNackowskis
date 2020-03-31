@@ -1,38 +1,62 @@
-import React,{useContext,useEffect,useState} from 'react'
+import React,{useContext,useEffect,useState,useRef} from 'react'
 import {DetailViewAuctionContext} from '../Contexts/DetailViewAuctionContext';
 import './Login.css'
 
 const DetailItem = (props) => {
 
-    const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction] = useContext(DetailViewAuctionContext);
+    const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction] = useContext(DetailViewAuctionContext);
     const [TableContent, setTableContent] = useState();
     const [TableContent2, setTableContent2] = useState();
+    const [TableContent3, setTableContent3] = useState();
     const [errorMessageBid,seterrorMessageBid] = useState();
+    const [datainfo,setdatainfo] = useState();
+    const input = useRef();
+    useEffect(() => {
+      setdatainfo(props.auctionDetails)
+    },[errorMessageBid,seterrorMessageBid])
+
+    useContext(() =>{
+      // console.log("hahaha")
+    },[datainfo])  
 
     useEffect(() => {
-
-    },[props.auctionDetails])
-    
-    useEffect(() => {
-      console.log(props.auctionDetails)
-       if(DetailDataForAuction !== undefined){
-        DetailDataForAuction[1].sort((a,b) => (b.Summa-a.Summa))
+      setdatainfo(props.auctionDetails)
+      //console.log(datainfo)
+       if(props.auctionDetails.length !== 0){
+        props.auctionDetails[1].sort((a,b) => (b.Summa-a.Summa))
         setTableContent2(() => {
 
-                  return(<React.Fragment><td>{DetailDataForAuction[0].Titel}</td>
-                                         <td>{DetailDataForAuction[0].Beskrivning}</td>
-                                         <td>{DetailDataForAuction[0].StartDatum}</td>
-                                         <td>{DetailDataForAuction[0].SlutDatum}</td>
-                                         <td>{DetailDataForAuction[0].Utropspris}</td>
-                                         <td>{DetailDataForAuction[0].SkapadAv}</td>
+                  return(<React.Fragment><td>{props.auctionDetails[0].Titel}</td>
+                                         <td>{props.auctionDetails[0].Beskrivning}</td>
+                                         <td>{props.auctionDetails[0].StartDatum}</td>
+                                         <td>{props.auctionDetails[0].SlutDatum}</td>
+                                         <td>{props.auctionDetails[0].Utropspris}</td>
+                                         <td>{props.auctionDetails[0].SkapadAv}</td>
                   </React.Fragment>)
                   })
 
                   setTableContent(() =>{
-                    let x = DetailDataForAuction[1].map((item) => {
+                    let x = props.auctionDetails[1].map((item) => {
                       return (<React.Fragment><tr><td>{item.Summa}</td><td>{item.Budgivare}</td></tr></React.Fragment>)})
     
                       return x})
+                  setTableContent3(() => {
+                    if(sessionStorage.getItem("user") !== props.auctionDetails[0].SkapadAv){
+                      return (<React.Fragment><label>My bid:</label>
+                        <input type="number" ref={input}/>       
+                       
+                        <br /><br />
+                
+                        <button class="btn btn-primary" onClick={
+                            () => {
+                                                                    // AuktionID behöver skickas hit
+                                saveEstimate(input, bidder.value, props.id);
+                                                                    //^...............^
+                            }
+                        }>Save bid</button></React.Fragment>)
+                    } 
+                    return
+                  })
 
         }
     },[getDataToAuctionDetailList])
@@ -41,11 +65,14 @@ const DetailItem = (props) => {
     },[TableContent, setTableContent,getDataToAuctionDetailList])
 
     useEffect(() => {
+    },[TableContent3, setTableContent3])
+
+    useEffect(() => {
 
     },[props.getdetails])
 
     useEffect(() => {
-      //props.getdetails(true)
+      props.getdetails(true)
     },[errorMessageBid,seterrorMessageBid])
 
     useEffect(() => {
@@ -56,11 +83,11 @@ const DetailItem = (props) => {
 
     function saveEstimate(sum)
     {
-      console.log(DetailDataForAuction[1])
-      if(DetailDataForAuction[1].length !== 0){
-      let arr = DetailDataForAuction[1].sort((a,b) => (b.Summa-a.Summa))
+      //console.log(DetailDataForAuction[1])
+      if(props.auctionDetails[1].length !== 0){
+      let arr = props.auctionDetails[1].sort((a,b) => (b.Summa-a.Summa))
      
-      if(arr[0].Summa < sum && DetailDataForAuction[0].Utropspris < sum){
+      if(arr[0].Summa < sum && props.auctionDetails[0].Utropspris < sum){
         createBidOnAuction({
           "Summa": sum,
           "AuktionID": props.id,
@@ -80,7 +107,7 @@ const DetailItem = (props) => {
     }
      }else{
      
-      if(DetailDataForAuction[0].Utropspris < sum){
+      if(props.auctionDetails[0].Utropspris < sum){
         createBidOnAuction({
           "Summa": sum,
           "AuktionID": props.id,
@@ -115,7 +142,7 @@ const DetailItem = (props) => {
 
             <div className="fadeIn first form-center">
             <table className="table table-borderless">
-
+            <thead>
             <tr>
             <th scope="col">Title</th>
             <th scope="col">description</th>
@@ -124,26 +151,15 @@ const DetailItem = (props) => {
             <th scope="col">Start price</th>
             <th scope="col">Created by</th>           
           </tr>
-            {TableContent2}</table>
+            <tr>{TableContent2}</tr></thead></table>
             {errorMessageBid}<br/>
-            <label>My bid:</label>
-        <input type="number" ref={(text) => bid = text}/>       
-       
-        <br /><br />
-
-        <button class="btn btn-primary" onClick={
-            () => {
-                                                    // AuktionID behöver skickas hit
-                saveEstimate(bid.value, bidder.value, props.id);
-                                                    //^...............^
-            }
-        }>Save bid</button>
+            {TableContent3}
             <table className="table table-borderless">
-
+            <thead>
             <tr>
             <th scope="col">Bid</th>
             <th scope="col">Bidder</th>
-          </tr>
+          </tr></thead>
             {TableContent}</table>
             
             </div>
