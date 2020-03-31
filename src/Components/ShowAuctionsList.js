@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { GetAuctionsContext } from "../Contexts/GetAuctionsContext";
 import AuctionsListItem from "./AuctionsListItem";
 import DetailViewAuction from "./DetailViewAuction";
@@ -19,14 +19,13 @@ const ShowAuctionsList = () => {
   ] = useContext(GetAuctionsContext);
   //getOpenAuctions hämtar data från databasen å sparar det i AuctionsToShow i GetOpenAuctionsContext.
   useEffect(() => {
+    console.log("hej")
     getOpenAuctions();
-  }, []);
+  },[]);
 
-  useEffect(() => {}, [setAuctionsToShow]);
+  useEffect(() => {}, [AuctionsToShow,setAuctionsToShow]);
   ///här renderar du om din komponent när data är hämtat
-  useEffect(() => {}, [AuctionsToShow, setAuctionsToShow]);
-
-  useEffect(() => {}, [setAuctionsToShow]);
+  useEffect(() => {}, [AuctionsToShow]);
 
   //Visar eller döljer DetailViewAuction
   const showDetails = e => {
@@ -60,7 +59,6 @@ const ShowAuctionsList = () => {
               <React.Fragment>
                 <AuctionsListItem
                   id={auction.AuktionID}
-                  key={auction.AuktionID}
                   titel={auction.Titel}
                   beskrivning={auction.Beskrivning}
                   slutDatum={auction.SlutDatum}

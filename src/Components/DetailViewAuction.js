@@ -19,13 +19,19 @@ const DetailViewAuction = props => {
     GetDetails(props.isShowing);
   }, [props.isShowing]);
 
+  
+
   useEffect(() => {
-    console.log(auctionListItemData);
-    console.log(auctionListItemData[0])
+    
+  },[auctionListItemData,setauctionListItemData])
+
+  useEffect(() => {
+    //console.log(auctionListItemData);
+    //console.log(auctionListItemData[0])
     if(auctionListItemData[0] !== undefined){
       setListItemVersion(() => {
-        console.log(auctionListItemData[0].SkapadAv)
-        console.log(sessionStorage.getItem("user"))
+        //console.log(auctionListItemData[0].SkapadAv)
+        //console.log(sessionStorage.getItem("user"))
         if(auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") && auctionListItemData[1].length === 0){
           return ("ListState: egen auction som är tom och går att ta bort och uppdatera")
         }else if(auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") && auctionListItemData[1].length !== 0){
@@ -41,6 +47,7 @@ const DetailViewAuction = props => {
   const GetDetails = async bolean => {
     if (bolean === true) {
       let data = await getDataToAuctionDetailList(props.id);
+      console.log(data)
       setauctionListItemData(data);
     }
   };
@@ -51,8 +58,8 @@ const DetailViewAuction = props => {
   return (
     <tr hidden={!props.isShowing}>
       <td colSpan="6">
-        <div>ID: {props.id} , detalj , {ListItemVersion}</div> 
-         <DetailItem id={props.id} auctionDetails = {auctionListItemData}/>
+        {/*<div>ID: {props.id} , detalj , {ListItemVersion}</div>*/}
+         <DetailItem id={props.id} getdetails={GetDetails} auctionDetails={auctionListItemData}/>
       </td>
     </tr>
   );

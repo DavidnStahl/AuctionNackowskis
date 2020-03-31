@@ -55,6 +55,20 @@ h2 {
   text-align: center;
 }
 
+#formContent2 {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background:  #fff;
+  padding: 30px;
+  width: 90%;
+  max-width: 1300px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  text-align: center;
+}
+
 #formFooter {
   background-color: #f6f6f6;
   border-top: 1px solid #dce8f1;
@@ -115,7 +129,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text],input[type=number] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -136,7 +150,7 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text]:focus,input[type=number]:focus{
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
