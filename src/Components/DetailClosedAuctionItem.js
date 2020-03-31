@@ -17,7 +17,7 @@ const DetailClosedAuctionItem = props => {
   const [TableContent2, setTableContent2] = useState();
 
   useEffect(() => {
-    console.log(props.auctionDetails);
+    //console.log(props.auctionDetails);
   }, []);
 
   useEffect(() => {}, [
@@ -32,7 +32,11 @@ const DetailClosedAuctionItem = props => {
     setDataInfo(props.auctionDetails);
     //console.log(datainfo)
     if (props.auctionDetails.length !== 0) {
-      let arr = props.auctionDetails[1].sort((a, b) => b.Summa - a.Summa);
+        let arr = ["",""]
+        if(props.auctionDetails[1].length !== 0){
+            arr = props.auctionDetails[1].sort((a, b) => b.Summa - a.Summa);
+        }
+      
       setTableContent2(() => {
         return (
           <React.Fragment>
@@ -66,22 +70,35 @@ const DetailClosedAuctionItem = props => {
         <div id="formContent2">
           <div className="fadeIn first form-center">
             <table className="table table-borderless">
+            <thead>
               <tr>
+              
                 <th scope="col">Title</th>
                 <th scope="col">description</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Start price</th>
                 <th scope="col">Created by</th>
-              </tr>
+                </tr>
+                </thead>
+                <tbody>
+              <tr>
               {TableContent2}
+              </tr>
+              </tbody>
             </table>
             <table className="table table-borderless">
+            <thead>
               <tr>
                 <th scope="col">Bid</th>
                 <th scope="col">Bidder</th>
-              </tr>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
               {TableContent}
+              </tr>
+              </tbody>
             </table>
           </div>
         </div>

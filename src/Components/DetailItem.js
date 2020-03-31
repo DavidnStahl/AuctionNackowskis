@@ -15,7 +15,7 @@ const DetailItem = (props) => {
     },[errorMessageBid,seterrorMessageBid])
 
     useContext(() =>{
-       console.log("hahaha")
+      // console.log("hahaha")
     },[datainfo])  
 
     useEffect(() => {
@@ -121,7 +121,7 @@ const DetailItem = (props) => {
 
             <div className="fadeIn first form-center">
             <table className="table table-borderless">
-
+            <thead>
             <tr>
             <th scope="col">Title</th>
             <th scope="col">description</th>
@@ -130,7 +130,7 @@ const DetailItem = (props) => {
             <th scope="col">Start price</th>
             <th scope="col">Created by</th>           
           </tr>
-            {TableContent2}</table>
+            <tr>{TableContent2}</tr></thead></table>
             {errorMessageBid}<br/>
             <label>My bid:</label>
         <input type="number" ref={(text) => bid = text}/>       
@@ -145,12 +145,12 @@ const DetailItem = (props) => {
             }
         }>Save bid</button>
             <table className="table table-borderless">
-
+            <thead>
             <tr>
             <th scope="col">Bid</th>
             <th scope="col">Bidder</th>
-          </tr>
-            {TableContent}</table>
+          </tr></thead>
+            <tbody><tr>{TableContent}</tr></tbody></table>
             
             </div>
 
