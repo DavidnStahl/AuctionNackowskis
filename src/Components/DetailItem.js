@@ -1,4 +1,4 @@
-import React,{useContext,useEffect,useState} from 'react'
+import React,{useContext,useEffect,useState,useRef} from 'react'
 import {DetailViewAuctionContext} from '../Contexts/DetailViewAuctionContext';
 import './Login.css'
 
@@ -7,9 +7,10 @@ const DetailItem = (props) => {
     const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction] = useContext(DetailViewAuctionContext);
     const [TableContent, setTableContent] = useState();
     const [TableContent2, setTableContent2] = useState();
+    const [TableContent3, setTableContent3] = useState();
     const [errorMessageBid,seterrorMessageBid] = useState();
     const [datainfo,setdatainfo] = useState();
-
+    const input = useRef();
     useEffect(() => {
       setdatainfo(props.auctionDetails)
     },[errorMessageBid,seterrorMessageBid])
@@ -39,12 +40,32 @@ const DetailItem = (props) => {
                       return (<React.Fragment><tr><td>{item.Summa}</td><td>{item.Budgivare}</td></tr></React.Fragment>)})
     
                       return x})
+                  setTableContent3(() => {
+                    if(sessionStorage.getItem("user") !== props.auctionDetails[0].SkapadAv){
+                      return (<React.Fragment><label>My bid:</label>
+                        <input type="number" ref={input}/>       
+                       
+                        <br /><br />
+                
+                        <button class="btn btn-primary" onClick={
+                            () => {
+                                                                    // AuktionID behöver skickas hit
+                                saveEstimate(input, bidder.value, props.id);
+                                                                    //^...............^
+                            }
+                        }>Save bid</button></React.Fragment>)
+                    } 
+                    return
+                  })
 
         }
     },[getDataToAuctionDetailList])
 
     useEffect(() => {
     },[TableContent, setTableContent,getDataToAuctionDetailList])
+
+    useEffect(() => {
+    },[TableContent3, setTableContent3])
 
     useEffect(() => {
 
@@ -132,18 +153,7 @@ const DetailItem = (props) => {
           </tr>
             <tr>{TableContent2}</tr></thead></table>
             {errorMessageBid}<br/>
-            <label>My bid:</label>
-        <input type="number" ref={(text) => bid = text}/>       
-       
-        <br /><br />
-
-        <button class="btn btn-primary" onClick={
-            () => {
-                                                    // AuktionID behöver skickas hit
-                saveEstimate(bid.value, bidder.value, props.id);
-                                                    //^...............^
-            }
-        }>Save bid</button>
+            {TableContent3}
             <table className="table table-borderless">
             <thead>
             <tr>
