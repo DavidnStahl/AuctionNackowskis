@@ -4,7 +4,7 @@ import Home from './Home'
 import AddNewAuction from './AddNewAuction'
 import Login from './Login'
 
-const Main = () => {
+const Main = React.memo(() => {
     return (
         <Switch>
             <Route exact path='/' component={Home}></Route>
@@ -12,6 +12,6 @@ const Main = () => {
             <Route path='/Login' component={Login}></Route>
         </Switch>
     )
-}
+})
 
 export default Main

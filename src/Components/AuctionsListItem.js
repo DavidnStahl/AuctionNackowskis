@@ -1,7 +1,7 @@
 import React,{useEffect,useContext} from "react";
 import { GetAuctionsContext } from "../Contexts/GetAuctionsContext";
 
-const AuctionsListItem = props => {
+const AuctionsListItem = React.memo(props => {
  const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext)
   useEffect(() => {
   },[getSearchedResultAuctions])
@@ -27,6 +27,6 @@ const AuctionsListItem = props => {
       </td>
     </tr>
   );
-};
+});
 
 export default AuctionsListItem;

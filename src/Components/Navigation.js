@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
 
-const Navigation = () =>{
+const Navigation = React.memo(() =>{
     
   return (<nav className="navbar navbar-expand-lg navbar-light bg-light">
       <ul className="navbar-nav mr-auto">
@@ -14,6 +14,6 @@ const Navigation = () =>{
       </ul>
   </nav>   
   )
-}
+})
 
 export default Navigation

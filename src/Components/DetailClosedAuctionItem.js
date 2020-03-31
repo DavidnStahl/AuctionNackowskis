@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
 import "./Login.css";
 
-const DetailClosedAuctionItem = props => {
+const DetailClosedAuctionItem = React.memo(props => {
   const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction] = useContext(DetailViewAuctionContext);
   const [DataInfo, setDataInfo] = useState();
   const [TableContent, setTableContent] = useState();
@@ -95,6 +95,6 @@ const DetailClosedAuctionItem = props => {
       </div>
     </div>
   );
-};
+});
 
 export default DetailClosedAuctionItem;

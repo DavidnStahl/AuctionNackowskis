@@ -71,6 +71,7 @@ const DetailViewAuctionContextProvider = (props) => {
     useEffect(() => {
     },[DetailDataForAuction, setDetailDataForAuction])
 
+
     
 
     const getDataToAuctionDetailList = async (id) =>{
@@ -116,13 +117,16 @@ const DetailViewAuctionContextProvider = (props) => {
             }
             }).then(data => console.log(data))}
 
-    const deleteAuction = async (id) =>{
-        console.log("Delete")
+    const deleteAuction = (async (id) =>{
+        //console.log("Delete")
         let url_delete_by_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240/${id}`;
         await fetch(url_delete_by_AuctionID, {
-        method: 'DELETE'}).then(data => console.log(data))
-        history.push('/')
-    }
+        method: 'DELETE'}).then(data => {
+            console.log(data)
+            window.location.reload(false);})
+        
+    })
+    
                              
      return (
           <DetailViewAuctionContext.Provider value={[DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction]}>

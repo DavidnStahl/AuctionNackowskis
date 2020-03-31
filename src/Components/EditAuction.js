@@ -2,28 +2,22 @@ import React from 'react';
 import { useState, useEffect,useRef } from 'react';
 import { useContext } from 'react';
 import {DetailViewAuctionContext} from '../Contexts/DetailViewAuctionContext';
+import {GetAuctionsContext} from '../Contexts/GetAuctionsContext';
 import './Login.css'
 
-const EditAuction = (props) => {
+const EditAuction = React.memo((props) => {
     
     const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction] = useContext(DetailViewAuctionContext);
+    const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext)
     const [TableContent, setTableContent] = useState();
     const titletext = useRef();
     const descriptiontext = useRef();
     const startdatetext = useRef();
     const enddatetext = useRef();
     const startpricetext = useRef();
-    const createdbytext = useRef();
-    const [text, setText ] = useState();
-
-    useEffect(() => {
-
-    },[setText])
 
     const eraseTitle = (e) => {
         e.target.value = props.auctionDetails[0].Titel;
-
-      console.log(titletext.current.value)
     }
     const eraseDescription = (e) => {
         e.target.value = props.auctionDetails[0].Beskrivning;
@@ -42,14 +36,18 @@ const EditAuction = (props) => {
         
       }
 
+
     useEffect(()=> {
         if(props.auctionDetails.length !== 0){
+           // console.log(AuctionsToShow)
+            //console.log(props.isShowing)
             setTableContent(() => {
+               
                 return(<React.Fragment>
                      <br />
                     <label>Title:</label>
                     <br />
-                    <input type="text" ref={titletext} onClick={eraseTitle} />
+                    <input type="text" ref={titletext} onClick={eraseTitle} />                   
                     <br /><br />
                     <label>Description:</label>
                     <input type="text" ref={descriptiontext} onClick={eraseDescription}/>
@@ -82,7 +80,6 @@ const EditAuction = (props) => {
             
                     <button class="btn btn-danger" onClick={() => {
                         deleteAuction(props.auctionDetails[0].AuktionID)
-                        props.getdetails(false);
                     }}>Delete Auction</button>
             
                     </React.Fragment>)
@@ -144,6 +141,6 @@ const EditAuction = (props) => {
 
         </React.Fragment>
     );
-}
+})
 
 export default EditAuction;

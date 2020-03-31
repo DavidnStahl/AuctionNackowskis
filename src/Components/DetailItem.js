@@ -2,7 +2,7 @@ import React,{useContext,useEffect,useState,useRef} from 'react'
 import {DetailViewAuctionContext} from '../Contexts/DetailViewAuctionContext';
 import './Login.css'
 
-const DetailItem = (props) => {
+const DetailItem = React.memo((props) => {
 
     const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction] = useContext(DetailViewAuctionContext);
     const [TableContent, setTableContent] = useState();
@@ -173,6 +173,6 @@ const DetailItem = (props) => {
         </div>
         </React.Fragment>
     );
-}
+})
 
 export default DetailItem;

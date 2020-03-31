@@ -1,8 +1,8 @@
 import {GetAuctionsContext} from '../Contexts/GetAuctionsContext';
 import React,{useContext,useEffect,useState,useRef} from 'react'
 
-function Search()
-{
+const Search = React.memo(() =>{ 
+
     const searchword = useRef();
     const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext);
 
@@ -19,5 +19,5 @@ function Search()
          </div>
 
         )
-}
+})
 export default Search

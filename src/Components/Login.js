@@ -2,7 +2,7 @@ import React,{useRef,useContext,useEffect} from 'react'
 import './Login.css'
 import {LoginContext} from '../Contexts/LoginContext';
 
-const Login = () => {
+const Login = React.memo(() => {
     const [loginName, setLoginName,setSessionUser,loginError, setLoginError] = useContext(LoginContext);
     const name = useRef()
     
@@ -31,7 +31,7 @@ const Login = () => {
           </div>
         </div>
     )
-}
+})
 
 export default Login
 

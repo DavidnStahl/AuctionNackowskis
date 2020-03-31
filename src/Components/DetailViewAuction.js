@@ -6,9 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 import EditAuction from './EditAuction';
 
 const key = uuidv4();
-console.log("Test uuid key :" + key);
+//console.log("Test uuid key :" + key);
 
-const DetailViewAuction = props => {
+const DetailViewAuction = React.memo(props => {
   const [auctionListItemData, setauctionListItemData] = useState([]);
   const [ListItemVersion, setListItemVersion] = useState([]);
 
@@ -55,7 +55,7 @@ const DetailViewAuction = props => {
   const GetDetails = async bolean => {
     if (bolean === true) {
       let data = await getDataToAuctionDetailList(props.id);
-      console.log(data);
+      //console.log(data);
       setauctionListItemData(data);
     }
   };
@@ -75,10 +75,10 @@ const DetailViewAuction = props => {
         />
 
         <DetailClosedAuctionItem auctionDetails={auctionListItemData}/>
-        <EditAuction id={props.id} getdetails={GetDetails} auctionDetails={auctionListItemData} />
+        <EditAuction id={props.id} isShowing={props.isShowing}  getdetails={GetDetails} auctionDetails={auctionListItemData} />
       </td>
     </tr>
   );
-};
+});
 
 export default DetailViewAuction;

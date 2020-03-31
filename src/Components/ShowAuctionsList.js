@@ -8,7 +8,7 @@ import DetailViewAuction from "./DetailViewAuction";
 // då kommer AuctionsToShow innehålla alla öppna auctions som en array med objects.
 // så du kommer kunna använda AuctionsToShow för ditt table, där du kan lista ut alla auctions.
 
-const ShowAuctionsList = () => {
+const ShowAuctionsList = React.memo(() => {
   const [isShowingDetails, setIsShowingDetails] = useState([]);
 
   const [
@@ -19,7 +19,7 @@ const ShowAuctionsList = () => {
   ] = useContext(GetAuctionsContext);
   //getOpenAuctions hämtar data från databasen å sparar det i AuctionsToShow i GetOpenAuctionsContext.
   useEffect(() => {
-    console.log("hej")
+    //console.log("hej")
     getOpenAuctions();
   },[]);
 
@@ -29,14 +29,14 @@ const ShowAuctionsList = () => {
 
   //Visar eller döljer DetailViewAuction
   const showDetails = e => {
-    console.log(isShowingDetails);
+    //console.log(isShowingDetails);
 
     if (isShowingDetails.indexOf(e.target.value) > -1) {
-      let newState = isShowingDetails.filter(id => id != e.target.value);
+      let newState = isShowingDetails.filter(id => id !== e.target.value);
       console.log(newState);
       return setIsShowingDetails(newState);
     }
-
+    console.log("hej");
     setIsShowingDetails(isShowingDetails.concat(e.target.value));
   };
 
@@ -69,6 +69,7 @@ const ShowAuctionsList = () => {
                 <DetailViewAuction
                   id={auction.AuktionID}
                   key={auction.AuktionID}
+                  event={showDetails}
                   isShowing={isShowingDetails.includes(
                     auction.AuktionID.toString()
                   )}
@@ -80,6 +81,6 @@ const ShowAuctionsList = () => {
       </table>
     </div>
   );
-};
+});
 
 export default ShowAuctionsList;

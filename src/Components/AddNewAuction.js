@@ -44,6 +44,8 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
          
           AddNewAuction(data)
           history.push('/')
+          //window.location.reload(false);
+          
         };
        
         return (

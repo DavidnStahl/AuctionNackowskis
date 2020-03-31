@@ -1,4 +1,5 @@
 import React, {createContext,useState,useEffect} from 'react';
+import {useHistory} from 'react-router'
 
 export const SaveNewAuctionContext = createContext();
 
@@ -22,7 +23,7 @@ const url = "https://nackowskis.azurewebsites.net/api/Auktion/2240"
 
 const SaveNewAuctionContextProvider = (props) => {
     const [NewAuctionData, setNewAuctionData] = useState();
-    
+    const history = useHistory();
     useEffect(() => {
       //console.log(NewAuctionData)
     }, [NewAuctionData, setNewAuctionData])
@@ -38,6 +39,8 @@ const SaveNewAuctionContextProvider = (props) => {
             'Content-Type': 'application/json'
           }
           }).then(function (data) {
+            history.push('/')
+            window.location.reload(); 
          }) 
         }
                        
