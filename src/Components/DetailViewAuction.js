@@ -3,6 +3,7 @@ import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
 import DetailClosedAuctionItem from "./DetailClosedAuctionItem";
 import DetailItem from "./DetailItem";
 import { v4 as uuidv4 } from "uuid";
+import EditAuction from './EditAuction';
 
 const key = uuidv4();
 console.log("Test uuid key :" + key);
@@ -74,7 +75,7 @@ const DetailViewAuction = props => {
         />
 
         <DetailClosedAuctionItem auctionDetails={auctionListItemData}/>
-        
+        <EditAuction auctionDetails={auctionListItemData} />
       </td>
     </tr>
   );

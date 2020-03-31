@@ -7,6 +7,9 @@ const EditAuction = (props) => {
     
     const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction, UpdateAuction, deleteAuction] = useContext(DetailViewAuctionContext);
 
+
+    // hela returnen ska egentligen skapas
+
     let [title, 
         description, 
         startDate, 
