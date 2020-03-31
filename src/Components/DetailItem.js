@@ -4,7 +4,7 @@ import './Login.css'
 
 const DetailItem = (props) => {
 
-    const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction] = useContext(DetailViewAuctionContext);
+    const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction] = useContext(DetailViewAuctionContext);
     const [TableContent, setTableContent] = useState();
     const [TableContent2, setTableContent2] = useState();
     const [TableContent3, setTableContent3] = useState();

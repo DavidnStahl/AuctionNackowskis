@@ -3,15 +3,7 @@ import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
 import "./Login.css";
 
 const DetailClosedAuctionItem = props => {
-  const [
-    DetailDataForAuction,
-    setDetailDataForAuction,
-    BiddingDataForAuction,
-    setBiddingDataForAuction,
-    getSelectedAuctionData,
-    getDataToAuctionDetailList,
-    createBidOnAuction
-  ] = useContext(DetailViewAuctionContext);
+  const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction] = useContext(DetailViewAuctionContext);
   const [DataInfo, setDataInfo] = useState();
   const [TableContent, setTableContent] = useState();
   const [TableContent2, setTableContent2] = useState();
@@ -32,7 +24,7 @@ const DetailClosedAuctionItem = props => {
     setDataInfo(props.auctionDetails);
     //console.log(datainfo)
     if (props.auctionDetails.length !== 0) {
-        let arr = ["",""]
+        let arr = [""]
         if(props.auctionDetails[1].length !== 0){
             arr = props.auctionDetails[1].sort((a, b) => b.Summa - a.Summa);
         }

@@ -1,4 +1,5 @@
 import React, {createContext,useState,useEffect} from 'react';
+import {useHistory} from 'react-router'
 
 export const DetailViewAuctionContext = createContext();
 
@@ -7,8 +8,7 @@ const DetailViewAuctionContextProvider = (props) => {
     const [BiddingDataForAuction, setBiddingDataForAuction] = useState();
     const [DetailViewItemToShow, setDetailViewItemToShow] = useState([]);
     
-    
-
+    const history = useHistory();
     /*const detailViewActionStateHandler = async (data) => {
         if(data !== undefined){
             if(data.SkapadAv === sessionStorage.getItem("user")){
@@ -117,13 +117,15 @@ const DetailViewAuctionContextProvider = (props) => {
             }).then(data => console.log(data))}
 
     const deleteAuction = async (id) =>{
+        console.log("Delete")
         let url_delete_by_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240/${id}`;
-        fetch(url_delete_by_AuctionID, {
-        method: 'DELETE'})
+        await fetch(url_delete_by_AuctionID, {
+        method: 'DELETE'}).then(data => console.log(data))
+        history.push('/')
     }
                              
      return (
-          <DetailViewAuctionContext.Provider value={[DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction]}>
+          <DetailViewAuctionContext.Provider value={[DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction]}>
             {props.children}
           </DetailViewAuctionContext.Provider>
   )   
