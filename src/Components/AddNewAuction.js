@@ -1,6 +1,8 @@
 import React,{useContext} from 'react'
 import {SaveNewAuctionContext} from '../Contexts/SaveNewAuctionContext';
 import {useState} from 'react';
+import { useForm } from 'react-hook-form';
+import {useHistory} from 'react-router'
 ///Din komponent Micke////
 ///AddNewAuction är functionen du anropar i din knapp när man submitar Auktionen
 // tex skapar du en function saveData som tar alla refs från inputsen sen i den functionen skapar du ett object data som du sedan stoppar in
@@ -30,78 +32,66 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
 
 
 //Mickes Komponent
-const AddNewAuction = () => {
 
-    const [NewAuctionData, setNewAuctionData, AddNewAuction] = useContext(SaveNewAuctionContext);
+
+    function App() {
+        const { register, handleSubmit, errors } = useForm(); // initialise the hook
+        const [NewAuctionData, setNewAuctionData, AddNewAuction] = useContext(SaveNewAuctionContext);
+              const history = useHistory()
+
     
-    let [title, 
-        description, 
-        startDate, 
-        endDate, 
-        estimate, 
-        createdBy] = useState("");
-
-    function saveData(title, description, startDate, endDate, estimate, createdBy)
-    {
-        let parsedStartDate = new Date(startDate);
-        let parsedEndDate = new Date(endDate);
-
-        let auction = {
-            "Titel": title,
-            "Beskrivning": description,
-            "StartDatum": parsedStartDate,
-            "SlutDatum": parsedEndDate,
-            "Gruppkod": 2240,
-            "Utropspris": estimate,
-            "SkapadAv": createdBy
-        }
-        
-        console.log(auction);
-
-        AddNewAuction(auction);
-    }
-
-    return (
-        <React.Fragment>
-        
-        <label>Titel</label>
-        <br />
-        <input type="text" ref={(text) => title = text}/>
-        <br /><br />
-        <label>Beskrivning</label>
-        <br />
-        <input type="text" ref={(text) => description = text}/>
-        <br /><br />
-        <label>Börjar</label>
-        <br />
-        <input type="datetime-local" ref={(dateTime) => startDate = dateTime}/>
-        <br /><br />
-        <label>Slutar</label>
-        <br />
-        <input type="datetime-local" ref={(dateTime) => endDate = dateTime}/>
-        <br /><br />
-        <label>Utropspris</label>
-        <br />
-        <input type="text" ref={(value) => estimate = value}/>
-        <br /><br />
-        <label>SkapadAv</label>
-        <br />
-        <input type="text" ref={(name) => createdBy = name}/>
-        <br /><br />
-        <button className="btn btn-primary" onClick={
-            () => {
-                saveData(title.value, 
-                description.value, 
-                startDate.value,
-                endDate.value,
-                estimate.value,
-                createdBy.value);
-            }
-        }>Spara Auktion</button>
+        const onSubmit = data => {
+         
+          AddNewAuction(data)
+          history.push('/')
+        };
+       
+        return (
+          <form onSubmit={handleSubmit(onSubmit)}>
+              <label>Titel</label>
+             <br/>
+            <input type="text" name="Titel"ref={register({ required: true })} />
+            <br />
+            {errors.Titel && 'Title is required.'}
+            <br /><br />
             
-        
-        </React.Fragment>
-    );
-}
+            <label>Beskrivning</label>
+            <br/>
+            <input type="text" name="Beskrivning" ref={register({ required: true })} />
+            <br/>
+            {errors.Beskrivning && 'Description is required.'}
+            <br /><br />
+
+            <label>Börjar</label>
+             <br />
+            <input type="datetime-local" name="StartDatum" ref={register({ required: true })} />
+            <br/>
+            {errors.StartDatum  && 'The startDate  is required.'}
+            <br /><br />
+            <label>Slutar</label>
+             <br />
+            <input type="datetime-local" name="SlutDatum" ref={register({ required: true })} />
+            <br/>
+            {errors.SlutDatum && 'The endDate is required.'}
+            <br /><br />
+            <label>Utropspris</label>
+            <br />
+            <input type="text" name="Utropspris" ref={register({ required: true,  pattern: /\d+/ })} />
+           <br />
+      {errors.Utropspris && 'Please enter a number for estimate.'}
+      <br />
+      <label>SkapadAv</label>
+        <br />
+        <input type="text" name="SkapadAv" ref={register({ required: true })} />
+        <br />
+            {errors.SkapadAv && 'Please enter your name'}
+        <br /><br />
+        <input type="hidden" name="Gruppkod" value="2240"  ref={register()}/> 
+            <input type="submit" />
+          </form>
+        );
+      }
+     
+
     
-export default AddNewAuction
+export default App
