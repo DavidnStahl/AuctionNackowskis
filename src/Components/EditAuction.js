@@ -14,6 +14,33 @@ const EditAuction = (props) => {
     const enddatetext = useRef();
     const startpricetext = useRef();
     const createdbytext = useRef();
+    const [text, setText ] = useState();
+
+    useEffect(() => {
+
+    },[setText])
+
+    const eraseTitle = (e) => {
+        e.target.value = props.auctionDetails[0].Titel;
+
+      console.log(titletext.current.value)
+    }
+    const eraseDescription = (e) => {
+        e.target.value = props.auctionDetails[0].Beskrivning;
+        
+      }
+      const eraseStartDate = (e) => {
+        e.target.value = props.auctionDetails[0].StartDatum;
+        
+      }
+      const eraseEndDate = (e) => {
+        e.target.value = props.auctionDetails[0].SlutDatum;
+        
+      }
+      const eraseStartingPrice = (e) => {
+        e.target.value = props.auctionDetails[0].Utropspris;
+        
+      }
 
     useEffect(()=> {
         if(props.auctionDetails.length !== 0){
@@ -22,22 +49,22 @@ const EditAuction = (props) => {
                      <br />
                     <label>Title:</label>
                     <br />
-                    <input type="text" ref={titletext} value={props.auctionDetails[0].Titel}/>
+                    <input type="text" ref={titletext} onClick={eraseTitle} />
                     <br /><br />
                     <label>Description:</label>
-                    <input type="text" ref={descriptiontext} value={props.auctionDetails[0].Beskrivning}/>
+                    <input type="text" ref={descriptiontext} onClick={eraseDescription}/>
                     <br /><br />
                     <label>Start Date:</label>
 
-                    <input type="datetime-local" ref={startdatetext} value={props.auctionDetails[0].StartDatum}/>
+                    <input type="datetime-local" ref={startdatetext} onClick={eraseStartDate}/>
                     <br /><br />
                     <label>End Date:</label>
 
-                    <input type="datetime-local" ref={enddatetext} value={props.auctionDetails[0].SlutDatum}/>
+                    <input type="datetime-local" ref={enddatetext} onClick={eraseEndDate}/>
                     <br /><br />
                     <label>Starting price</label>
 
-                    <input type="number" ref={startpricetext} value={props.auctionDetails[0].Utropspris}/>
+                    <input type="number" ref={startpricetext} onClick={eraseStartingPrice}/>
                     <br /><br />
                     <label>Created by:</label>
 
@@ -49,8 +76,7 @@ const EditAuction = (props) => {
                             descriptiontext.current.value, 
                             startdatetext.current.value,
                             enddatetext.current.value,
-                            startpricetext.current.value,
-                            createdbytext.current.value);
+                            startpricetext.current.value);
                         }
                     }>Update Auction</button>
             
@@ -77,19 +103,20 @@ const EditAuction = (props) => {
         estimate, 
         createdBy] = useState("");
 
-    function saveData(title, description, startDate, endDate, estimate, createdBy)
+    function saveData(title, description, startDate, endDate, estimate)
     {
         let parsedStartDate = new Date(startDate);
         let parsedEndDate = new Date(endDate);
 
         let auction = {
+            "AuktionID": props.id,
             "Titel": title,
             "Beskrivning": description,
             "StartDatum": parsedStartDate,
             "SlutDatum": parsedEndDate,
             "Gruppkod": 2240,
             "Utropspris": estimate,
-            "SkapadAv": createdBy
+            "SkapadAv": sessionStorage.getItem("user")
         }
         
         console.log(auction);
