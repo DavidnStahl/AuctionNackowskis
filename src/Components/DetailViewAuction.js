@@ -73,9 +73,8 @@ const DetailViewAuction = props => {
           auctionDetails={auctionListItemData}
         />
 
-        {
-          //<DetailClosedAuctionItem auctionDetails={auctionListItemData} />}
-        }
+        <DetailClosedAuctionItem auctionDetails={auctionListItemData}/>
+        
       </td>
     </tr>
   );

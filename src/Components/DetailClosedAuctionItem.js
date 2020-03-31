@@ -1,7 +1,6 @@
-import React,{useEffect,useState,useContext} from 'react'
-import {DetailViewAuctionContext} from '../Contexts/DetailViewAuctionContext'
-import './Login.css'
-
+import React, { useEffect, useState, useContext } from "react";
+import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
+import "./Login.css";
 
 const DetailClosedAuctionItem = props => {
   const [
@@ -17,15 +16,9 @@ const DetailClosedAuctionItem = props => {
   const [TableContent, setTableContent] = useState();
   const [TableContent2, setTableContent2] = useState();
 
-
-    useEffect(() => {
-        //console.log(props.auctionDetails)
-    }, [])
-
   useEffect(() => {
     console.log(props.auctionDetails);
   }, []);
-
 
   useEffect(() => {}, [
     TableContent,
@@ -38,7 +31,7 @@ const DetailClosedAuctionItem = props => {
   useEffect(() => {
     setDataInfo(props.auctionDetails);
     //console.log(datainfo)
-    if (props.auctionDetails !== 0) {
+    if (props.auctionDetails.length !== 0) {
       let arr = props.auctionDetails[1].sort((a, b) => b.Summa - a.Summa);
       setTableContent2(() => {
         return (
@@ -67,39 +60,11 @@ const DetailClosedAuctionItem = props => {
   }, [getDataToAuctionDetailList]);
   //props.auctionDetails
 
-
-    useEffect(() => {
-        setDataInfo(props.auctionDetails)
-        console.log(props.auctionDetails)
-         if(props.auctionDetails.length !== 0){
-           let arr = props.auctionDetails[1].sort((a,b) => (b.Summa-a.Summa))
-          setTableContent2(() => {
-  
-                    return(<React.Fragment><td>{props.auctionDetails[0].Titel}</td>
-                                           <td>{props.auctionDetails[0].Beskrivning}</td>
-                                           <td>{props.auctionDetails[0].StartDatum}</td>
-                                           <td>{props.auctionDetails[0].SlutDatum}</td>
-                                           <td>{props.auctionDetails[0].Utropspris}</td>
-                                           <td>{props.auctionDetails[0].SkapadAv}</td>
-                    </React.Fragment>)
-                    })
-  
-                    setTableContent(() =>{
-                      
-                        return (<React.Fragment><tr><td>{arr[0].Summa}</td><td>{arr[0].Budgivare}</td></tr></React.Fragment>)})
-  
-          }
-      },[getDataToAuctionDetailList])
-    //props.auctionDetails
-
-    
-
   return (
     <div className="container text-center">
       <div className="wrapper fadeInDown">
         <div id="formContent2">
           <div className="fadeIn first form-center">
-
             <table className="table table-borderless">
               <tr>
                 <th scope="col">Title</th>
@@ -112,14 +77,6 @@ const DetailClosedAuctionItem = props => {
               {TableContent2}
             </table>
             <table className="table table-borderless">
-
-
-            <tr>
-            <th scope="col">Winning Bid</th>
-            <th scope="col">Winning Bidder</th>
-          </tr>
-          {TableContent}
-
               <tr>
                 <th scope="col">Bid</th>
                 <th scope="col">Bidder</th>
