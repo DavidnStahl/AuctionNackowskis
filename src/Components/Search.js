@@ -10,7 +10,6 @@ function Search()
       evt.preventDefault();
       getSearchedResultAuctions(name);
   }
-        
         return(
             <div>
             <form onSubmit={handleSubmit}> 
