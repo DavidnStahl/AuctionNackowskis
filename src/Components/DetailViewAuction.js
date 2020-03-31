@@ -63,7 +63,6 @@ const DetailViewAuction = props => {
       <td colSpan="6">
         {/*<div>ID: {props.id} , detalj , {ListItemVersion}</div>*/}
         <DetailItem
-          key={uuidv5()}
           id={props.id}
           getdetails={GetDetails}
           auctionDetails={auctionListItemData}
