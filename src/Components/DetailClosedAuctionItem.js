@@ -1,5 +1,5 @@
 import React,{useEffect,useState,useContext} from 'react'
-import {DetailViewAuctionContext} from ''
+import {DetailViewAuctionContext} from '../Contexts/DetailViewAuctionContext'
 import './Login.css'
 
 const DetailClosedAuctionItem = (props)  => {
@@ -9,7 +9,7 @@ const DetailClosedAuctionItem = (props)  => {
     const [TableContent2,setTableContent2] = useState();
 
     useEffect(() => {
-        console.log(props.auctionDetails)
+        //console.log(props.auctionDetails)
     }, [])
 
     useEffect(() => {
@@ -22,8 +22,8 @@ const DetailClosedAuctionItem = (props)  => {
 
     useEffect(() => {
         setDataInfo(props.auctionDetails)
-        //console.log(datainfo)
-         if(props.auctionDetails !== 0){
+        console.log(props.auctionDetails)
+         if(props.auctionDetails.length !== 0){
            let arr = props.auctionDetails[1].sort((a,b) => (b.Summa-a.Summa))
           setTableContent2(() => {
   
@@ -63,8 +63,8 @@ const DetailClosedAuctionItem = (props)  => {
             <table className="table table-borderless">
 
             <tr>
-            <th scope="col">Bid</th>
-            <th scope="col">Bidder</th>
+            <th scope="col">Winning Bid</th>
+            <th scope="col">Winning Bidder</th>
           </tr>
           {TableContent}
             </table>

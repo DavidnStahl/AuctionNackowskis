@@ -2,7 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { DetailViewAuctionContext } from "../Contexts/DetailViewAuctionContext";
 import DetailClosedAuctionItem from "./DetailClosedAuctionItem";
 import DetailItem from "./DetailItem";
-import { v5 as uuidv5 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
+
+const key = uuidv4();
+console.log("Test uuid key :" + key);
 
 const DetailViewAuction = props => {
   const [auctionListItemData, setauctionListItemData] = useState([]);
@@ -64,6 +67,7 @@ const DetailViewAuction = props => {
       <td colSpan="6">
         {/*<div>ID: {props.id} , detalj , {ListItemVersion}</div>*/}
         <DetailItem
+          key={uuidv4}
           id={props.id}
           getdetails={GetDetails}
           auctionDetails={auctionListItemData}

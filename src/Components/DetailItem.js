@@ -20,22 +20,22 @@ const DetailItem = (props) => {
 
     useEffect(() => {
       setdatainfo(props.auctionDetails)
-      console.log(datainfo)
-       if(DetailDataForAuction !== undefined){
-        DetailDataForAuction[1].sort((a,b) => (b.Summa-a.Summa))
+      //console.log(datainfo)
+       if(props.auctionDetails.length !== 0){
+        props.auctionDetails[1].sort((a,b) => (b.Summa-a.Summa))
         setTableContent2(() => {
 
-                  return(<React.Fragment><td>{DetailDataForAuction[0].Titel}</td>
-                                         <td>{DetailDataForAuction[0].Beskrivning}</td>
-                                         <td>{DetailDataForAuction[0].StartDatum}</td>
-                                         <td>{DetailDataForAuction[0].SlutDatum}</td>
-                                         <td>{DetailDataForAuction[0].Utropspris}</td>
-                                         <td>{DetailDataForAuction[0].SkapadAv}</td>
+                  return(<React.Fragment><td>{props.auctionDetails[0].Titel}</td>
+                                         <td>{props.auctionDetails[0].Beskrivning}</td>
+                                         <td>{props.auctionDetails[0].StartDatum}</td>
+                                         <td>{props.auctionDetails[0].SlutDatum}</td>
+                                         <td>{props.auctionDetails[0].Utropspris}</td>
+                                         <td>{props.auctionDetails[0].SkapadAv}</td>
                   </React.Fragment>)
                   })
 
                   setTableContent(() =>{
-                    let x = DetailDataForAuction[1].map((item) => {
+                    let x = props.auctionDetails[1].map((item) => {
                       return (<React.Fragment><tr><td>{item.Summa}</td><td>{item.Budgivare}</td></tr></React.Fragment>)})
     
                       return x})
@@ -62,11 +62,11 @@ const DetailItem = (props) => {
 
     function saveEstimate(sum)
     {
-      console.log(DetailDataForAuction[1])
-      if(DetailDataForAuction[1].length !== 0){
-      let arr = DetailDataForAuction[1].sort((a,b) => (b.Summa-a.Summa))
+      //console.log(DetailDataForAuction[1])
+      if(props.auctionDetails[1].length !== 0){
+      let arr = props.auctionDetails[1].sort((a,b) => (b.Summa-a.Summa))
      
-      if(arr[0].Summa < sum && DetailDataForAuction[0].Utropspris < sum){
+      if(arr[0].Summa < sum && props.auctionDetails[0].Utropspris < sum){
         createBidOnAuction({
           "Summa": sum,
           "AuktionID": props.id,
@@ -86,7 +86,7 @@ const DetailItem = (props) => {
     }
      }else{
      
-      if(DetailDataForAuction[0].Utropspris < sum){
+      if(props.auctionDetails[0].Utropspris < sum){
         createBidOnAuction({
           "Summa": sum,
           "AuktionID": props.id,
