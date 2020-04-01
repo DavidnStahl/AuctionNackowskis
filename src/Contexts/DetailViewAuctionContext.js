@@ -115,7 +115,7 @@ const DetailViewAuctionContextProvider = (props) => {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
             }
-            }).then(data => console.log(data))}
+            }).then(data => window.location.reload(false))}
 
     const deleteAuction = (async (id) =>{
         //console.log("Delete")
