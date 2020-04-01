@@ -39,11 +39,28 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
         const [NewAuctionData, setNewAuctionData, AddNewAuction] = useContext(SaveNewAuctionContext);
               const history = useHistory()
 
-    
+
         const onSubmit = data => {
-         
+        var currentdate= new Date();
+ console.log(Date.parse(currentdate))
+ console.log(Date.parse(data.StartDatum))
+
+          if(Date.parse(data.StartDatum)<Date.parse(currentdate))
+          {          alert("Please write correct start Date, the data must be at after current date and time!");
+
+ 
+          }
+       else if(data.SlutDatum<data.StartDatum)
+        {        
+
+           alert("The end date can't be before the start date!");
+
+        }
+
+         else {
           AddNewAuction(data)
           history.push('/')
+         }
         };
        
         return (
@@ -64,9 +81,10 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
 
             <label>Börjar</label>
              <br />
-            <input type="datetime-local" name="StartDatum" ref={register({ required: true })} />
+            <input type="datetime-local" name="StartDatum" ref={register({ required:true}  )} />
             <br/>
-            {errors.StartDatum  && 'The startDate  is required.'}
+
+            {errors.StartDatum && errors.StartDatum.type === 'required' && <span>This is required</span>}
             <br /><br />
             <label>Slutar</label>
              <br />
