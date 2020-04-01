@@ -47,28 +47,28 @@ const EditAuction = React.memo((props) => {
                      <br />
                     <label>Title:</label>
                     <br />
-                    <input type="text" ref={titletext} onClick={eraseTitle} />                   
+                    <input type="text" ref={titletext} onClick={eraseTitle} placeholder={props.auctionDetails[0].Titel}/>                   
                     <br /><br />
                     <label>Description:</label>
-                    <input type="text" ref={descriptiontext} onClick={eraseDescription}/>
+                    <input type="text" ref={descriptiontext} onClick={eraseDescription} placeholder={props.auctionDetails[0].Beskrivning}/>
                     <br /><br />
                     <label>Start Date:</label>
 
-                    <input type="datetime-local" ref={startdatetext} onClick={eraseStartDate}/>
+                    <input type="datetime-local" ref={startdatetext} onClick={eraseStartDate} placeholder={props.auctionDetails[0].StartDatum}/>
                     <br /><br />
                     <label>End Date:</label>
 
-                    <input type="datetime-local" ref={enddatetext} onClick={eraseEndDate}/>
+                    <input type="datetime-local" ref={enddatetext} onClick={eraseEndDate} placeholder={props.auctionDetails[0].SlutDatum}/>
                     <br /><br />
                     <label>Starting price</label>
 
-                    <input type="number" ref={startpricetext} onClick={eraseStartingPrice}/>
+                    <input type="number" minValue="1" ref={startpricetext} onClick={eraseStartingPrice} placeholder={props.auctionDetails[0].Utropspris}/>
                     <br /><br />
-                    <label>Created by:</label>
+                    <label>Created by: </label>
 
-                    <span>{sessionStorage.getItem("user")}</span>
+                    <span> {sessionStorage.getItem("user")}</span>
                     <br /><br />
-                    <button className="btn btn-primary" onClick={
+                    <button className="btn btn-primary mr-3" onClick={
                         () => {
                             saveData(titletext.current.value, 
                             descriptiontext.current.value, 
@@ -81,7 +81,7 @@ const EditAuction = React.memo((props) => {
                     <button class="btn btn-danger" onClick={() => {
                         deleteAuction(props.auctionDetails[0].AuktionID)
                     }}>Delete Auction</button>
-            
+            <br /><br />
                     </React.Fragment>)
             })
             

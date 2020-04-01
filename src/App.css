@@ -1,7 +1,17 @@
 .App {
+  min-height: 100vh;
   text-align: center;
+  background-image: url("https://lh6.googleusercontent.com/proxy/A5yKB6Q_rS5zqmWHAvSCbNkPz0ZRmDfZQTR714BdCsE_gvSfjUmqWeAoxCXky1_MKA09-dgUnIspGvuDbIaHKiO6BSjNAgmipfFv07DBErlSqnY9okEiuqSo1qJzdwMqE9StJfWeIgcouxetoRU2wbAt1o_tipuw=s0-d");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
+.addnewauction{
+  background-color: rgb(63, 67, 75);
+}
+html,body{
+  background-color: black;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

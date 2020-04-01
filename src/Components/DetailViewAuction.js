@@ -37,16 +37,32 @@ const DetailViewAuction = React.memo(props => {
           auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") &&
           auctionListItemData[1].length === 0
         ) {
-          return "ListState: egen auction som är tom och går att ta bort och uppdatera";
+          //"ListState: egen auction som är tom och går att ta bort och uppdatera"
+          return  (<EditAuction id={props.id} isShowing={props.isShowing}  getdetails={GetDetails} auctionDetails={auctionListItemData} />);
         } else if (
           auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") &&
           auctionListItemData[1].length !== 0
         ) {
-          return "ListState: egen auction som har bud och går inte att ta bort eller uppdatera";
+          //"ListState: egen auction som har bud och går inte att ta bort eller uppdatera";
+          return ( <DetailItem
+            key={uuidv4}
+            id={props.id}
+            getdetails={GetDetails}
+            auctionDetails={auctionListItemData}
+          />);
         } else if (
-          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user")
+          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].SlutDatum) > Date.now()
         ) {
-          return "ListState: annans auction som går att buda på";
+          //"ListState: annans auction som går att buda på"
+          return (<DetailItem
+            key={uuidv4}
+            id={props.id}
+            getdetails={GetDetails}
+            auctionDetails={auctionListItemData}
+          />);
+        } else if (new Date(auctionListItemData[0].SlutDatum) < Date.now()) {
+          //"ListState: stäng auction"
+          return (<DetailClosedAuctionItem auctionDetails={auctionListItemData}/>);
         }
       });
     }
@@ -66,16 +82,16 @@ const DetailViewAuction = React.memo(props => {
   return (
     <tr hidden={!props.isShowing}>
       <td colSpan="6">
-        {/*<div>ID: {props.id} , detalj , {ListItemVersion}</div>*/}
-        <DetailItem
+        {<div>{ListItemVersion}</div>}
+{/*      {    <DetailItem
           key={uuidv4}
           id={props.id}
           getdetails={GetDetails}
           auctionDetails={auctionListItemData}
-        />
+        /> } */}
 
-        <DetailClosedAuctionItem auctionDetails={auctionListItemData}/>
-        <EditAuction id={props.id} isShowing={props.isShowing}  getdetails={GetDetails} auctionDetails={auctionListItemData} />
+{/*         <DetailClosedAuctionItem auctionDetails={auctionListItemData}/>
+        <EditAuction id={props.id} isShowing={props.isShowing}  getdetails={GetDetails} auctionDetails={auctionListItemData} /> */}
       </td>
     </tr>
   );

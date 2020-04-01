@@ -42,8 +42,7 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
 
         const onSubmit = data => {
         var currentdate= new Date();
- console.log(Date.parse(currentdate))
- console.log(Date.parse(data.StartDatum))
+
 
           if(Date.parse(data.StartDatum)<Date.parse(currentdate))
           {          alert("Please write correct start Date, the data must be at after current date and time!");
@@ -64,49 +63,54 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
         };
        
         return (
-          <form onSubmit={handleSubmit(onSubmit)}>
-              <label>Titel</label>
+          <React.Fragment>
+          <div>
+          <br/>
+          <h1 style={{textAlign:"center"}}>Add a new auction</h1><br/><br/><br/>
+          <form onSubmit={handleSubmit(onSubmit)} className="container text-center addnewauction text-white">
+             <div class="form-group">
              <br/>
-            <input type="text" name="Titel"ref={register({ required: true })} />
-            <br />
-            {errors.Titel && 'Title is required.'}
-            <br /><br />
+            <label for="Titel">Title:</label><br/>
+            <input type="text" className="form-control" id="Titel" name="Titel"ref={register({ required: true })} />
+            <br/>
+            {errors.Titel && <span style={{color: "red"}}>This is required</span>}
+            </div>
             
-            <label>Beskrivning</label>
+            <div class="form-group">
+            <label for="Beskrivning">Description:</label>
             <br/>
-            <input type="text" name="Beskrivning" ref={register({ required: true })} />
+            <input type="text" name="Beskrivning" className="form-control" id="Beskrivning" ref={register({ required: true })} />
             <br/>
-            {errors.Beskrivning && 'Description is required.'}
-            <br /><br />
-
-            <label>Börjar</label>
+            {errors.Beskrivning && <span style={{color: "red"}}>Description is required.</span>}
+            </div>
+            <label for="StartDate">Auction start date:</label>
              <br />
-            <input type="datetime-local" name="StartDatum" ref={register({ required:true}  )} />
+            <input type="datetime-local" name="StartDatum" className="text-center" id="StartDate" style={{maxWidth: "20%", align:"center" }}  ref={register({ required:true}  )} />
+            <br/>
+            {errors.StartDatum && errors.StartDatum.type === 'required' && <span style={{color: "red"}}>Start Date is required.</span>}
             <br/>
 
-            {errors.StartDatum && errors.StartDatum.type === 'required' && <span>This is required</span>}
-            <br /><br />
-            <label>Slutar</label>
+            <label for="EndDate">Auction end date:</label>
              <br />
-            <input type="datetime-local" name="SlutDatum" ref={register({ required: true })} />
+            <input type="datetime-local" name="SlutDatum" className="text-center" id="EndDate" style={{maxWidth: "20%", align:"center"}} ref={register({ required: true })} />
             <br/>
-            {errors.SlutDatum && 'The endDate is required.'}
-            <br /><br />
-            <label>Utropspris</label>
+            {errors.SlutDatum && <span style={{color: "red"}}>End Date is required.</span>}
             <br />
-            <input type="text" name="Utropspris" ref={register({ required: true,  pattern: /\d+/ })} />
-           <br />
-      {errors.Utropspris && 'Please enter a number for estimate.'}
-      <br />
-      <label>SkapadAv</label>
-        <br />
+            <div class="form-group">
+            <label for="Price">Starting price:</label>
+            <br />
+            <input type="number" name="Utropspris" className="form-control" id="Price" ref={register({ required: true,  min:"1", pattern: /\d+/ })} />
+           <br />      
+          {errors.Utropspris && errors.Utropspris.type === 'min' && <span>Number shouldnt be less than one</span>}<br/>
+      {errors.Utropspris && <span style={{color: "red"}}>This is required.</span>}
+      </div>
         <input type="hidden" name="SkapadAv" value={sessionStorage.getItem("user")} ref={register({ required: true })} />
-        <br />
-            {errors.SkapadAv && 'Please enter your name'}
-        <br /><br />
+     
         <input type="hidden" name="Gruppkod" value="2240"  ref={register()}/> 
-            <input type="submit" />
+            <input type="submit" value="Create Auction" />
           </form>
+          </div>
+          </React.Fragment>
         );
       }
      

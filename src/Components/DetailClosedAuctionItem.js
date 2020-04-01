@@ -34,8 +34,8 @@ const DetailClosedAuctionItem = React.memo(props => {
           <React.Fragment>
             <td>{props.auctionDetails[0].Titel}</td>
             <td>{props.auctionDetails[0].Beskrivning}</td>
-            <td>{props.auctionDetails[0].StartDatum}</td>
-            <td>{props.auctionDetails[0].SlutDatum}</td>
+            <td>{props.auctionDetails[0].StartDatum.replace("T"," ")}</td>
+            <td>{props.auctionDetails[0].SlutDatum.replace("T"," ")}</td>
             <td>{props.auctionDetails[0].Utropspris}</td>
             <td>{props.auctionDetails[0].SkapadAv}</td>
           </React.Fragment>
@@ -82,8 +82,8 @@ const DetailClosedAuctionItem = React.memo(props => {
             <table className="table table-borderless">
             <thead>
               <tr>
-                <th scope="col">Bid</th>
-                <th scope="col">Bidder</th>
+                <th scope="col">Highest Bid</th>
+                <th scope="col">Winning Bidder</th>
                 </tr>
                 </thead>
                 

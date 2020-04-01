@@ -5,6 +5,7 @@ import './Login.css'
 const DetailItem = React.memo((props) => {
 
     const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction] = useContext(DetailViewAuctionContext);
+    
     const [TableContent, setTableContent] = useState();
     const [TableContent2, setTableContent2] = useState();
     const [TableContent3, setTableContent3] = useState();
@@ -17,7 +18,11 @@ const DetailItem = React.memo((props) => {
 
     useContext(() =>{
       // console.log("hahaha")
-    },[datainfo])  
+    },[datainfo]) 
+    
+    useEffect(() => {
+
+    },[BiddingDataForAuction, setBiddingDataForAuction])
 
     useEffect(() => {
       setdatainfo(props.auctionDetails)
@@ -28,16 +33,16 @@ const DetailItem = React.memo((props) => {
 
                   return(<React.Fragment><td>{props.auctionDetails[0].Titel}</td>
                                          <td>{props.auctionDetails[0].Beskrivning}</td>
-                                         <td>{props.auctionDetails[0].StartDatum}</td>
-                                         <td>{props.auctionDetails[0].SlutDatum}</td>
-                                         <td>{props.auctionDetails[0].Utropspris}</td>
+                                         <td>{props.auctionDetails[0].StartDatum.replace("T"," ")}</td>
+                                         <td>{props.auctionDetails[0].SlutDatum.replace("T"," ")}</td>
+                                         <td>{props.auctionDetails[0].Utropspris.toLocaleString()}</td>
                                          <td>{props.auctionDetails[0].SkapadAv}</td>
                   </React.Fragment>)
                   })
 
                   setTableContent(() =>{
                     let x = props.auctionDetails[1].map((item) => {
-                      return (<React.Fragment><tr><td>{item.Summa}</td><td>{item.Budgivare}</td></tr></React.Fragment>)})
+                      return (<React.Fragment><tr><td>{item.Summa.toLocaleString()}</td><td>{item.Budgivare}</td></tr></React.Fragment>)})
     
                       return x})
                   setTableContent3(() => {
@@ -50,7 +55,7 @@ const DetailItem = React.memo((props) => {
                         <button class="btn btn-primary" onClick={
                             () => {
                                                                     // AuktionID behöver skickas hit
-                                saveEstimate(input, bidder.value, props.id);
+                                saveEstimate(input.current.value, bidder.value, props.id);
                                                                     //^...............^
                             }
                         }>Save bid</button></React.Fragment>)
@@ -83,7 +88,7 @@ const DetailItem = React.memo((props) => {
 
     function saveEstimate(sum)
     {
-      //console.log(DetailDataForAuction[1])
+      console.log(sum)
       if(props.auctionDetails[1].length !== 0){
       let arr = props.auctionDetails[1].sort((a,b) => (b.Summa-a.Summa))
      
@@ -145,7 +150,7 @@ const DetailItem = React.memo((props) => {
             <thead>
             <tr>
             <th scope="col">Title</th>
-            <th scope="col">description</th>
+            <th scope="col">Description</th>
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
             <th scope="col">Start price</th>

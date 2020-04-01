@@ -13,7 +13,11 @@ const LoginContextProvider = (props) => {
             sessionStorage.setItem("user",name)
             setLocalStorageUser(name);
             setLoginName(name);
-            history.push('/')           
+            let home = document.getElementById("home")
+            home.hidden = false;
+            let addnewauction = document.getElementById("addnewauction")
+            addnewauction.hidden = false;
+            history.push('/Home')           
         }else{
           setLoginError("minimum characters is 2")
         }    

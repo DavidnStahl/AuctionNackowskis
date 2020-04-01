@@ -11,7 +11,7 @@ import DetailViewAuctionContext from './Contexts/DetailViewAuctionContext';
 
 function App() {
   return (
-    <div>
+    <div className="App" >
     
     <SaveNewAuctionContext>
     

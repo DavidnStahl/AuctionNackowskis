@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import ShowAuctionsList from './ShowAuctionsList'
 import Search from './Search'
 
@@ -6,11 +6,21 @@ import Search from './Search'
 //som har visar den valda auktionens info samt bud
 const Home = () =>{
     
-
+    useEffect(() => {
+        
+        if(sessionStorage.getItem("user") !== null){
+            let home = document.getElementById("home")
+            home.hidden = false;
+            let addnewauction = document.getElementById("addnewauction")
+            addnewauction.hidden = false;
+        }
+    })
     // logic//
     return (
         <div className="container text-center">
-        Här är sidan som visar sök,lista på komponenter samt auktion detalj view.
+        <br/>
+        <h1>Nackowskis</h1>
+        <br/>
            {<Search/>}
            <ShowAuctionsList/>
            {/*<AuctionDetailItems/>*/}

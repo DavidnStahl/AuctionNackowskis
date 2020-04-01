@@ -30,10 +30,12 @@ const ShowAuctionsList = React.memo(() => {
   //Visar eller döljer DetailViewAuction
   const showDetails = e => {
     //console.log(isShowingDetails);
-
+  
     if (isShowingDetails.indexOf(e.target.value) > -1) {
       let newState = isShowingDetails.filter(id => id !== e.target.value);
+      
       console.log(newState);
+      
       return setIsShowingDetails(newState);
     }
     console.log("hej");
@@ -42,12 +44,12 @@ const ShowAuctionsList = React.memo(() => {
 
   return (
     <div className="container text-center">
-      <table className="table">
+      <table className="table table-dark table-striped">
         <thead>
           <tr>
-            <th scope="col">Title</th>
-            <th scope="col">description</th>
-            <th scope="col">End Date</th>
+            <th scope="col" >Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Ends</th>
             <th scope="col">Start price</th>
             <th scope="col">Created by</th>
             <th scope="col"></th>
@@ -65,6 +67,8 @@ const ShowAuctionsList = React.memo(() => {
                   utropspris={auction.Utropspris}
                   skapadAv={auction.SkapadAv}
                   event={showDetails}
+                  objectState={isShowingDetails}
+
                 />
                 <DetailViewAuction
                   id={auction.AuktionID}

@@ -39,7 +39,7 @@ const SaveNewAuctionContextProvider = (props) => {
             'Content-Type': 'application/json'
           }
           }).then(function (data) {
-            history.push('/')
+            history.push('/Home')
             window.location.reload(); 
          }) 
         }

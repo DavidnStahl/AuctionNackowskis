@@ -19,15 +19,16 @@ const GetAuctionsContextProvider = (props) => {
           setAuctionsToShow(data)
         }else{
           let filteredData = data.filter(auction => auction.Titel.toLowerCase().startsWith(searchInput.toLowerCase()));
-          
-        setAuctionsToShow(filteredData)
+          let x = filteredData.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));  
+        setAuctionsToShow(x)
         }})
   }
     const getOpenAuctions = async() =>{
       if(AuctionsToShow.length === 0){
         await fetch(url).then(res => res.json()).then((data) => {
           let filteredData = data.filter(auction => new Date(auction.SlutDatum) > Date.now())
-          setAuctionsToShow(filteredData)              
+          let x = filteredData.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));
+          setAuctionsToShow(x)              
         })
       }
         

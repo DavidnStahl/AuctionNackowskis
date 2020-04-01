@@ -69,9 +69,15 @@ const DetailViewAuctionContextProvider = (props) => {
     },[])*/
 
     useEffect(() => {
+
+    },[])
+
+    useEffect(() => {
     },[DetailDataForAuction, setDetailDataForAuction])
 
+   useEffect(() => {
 
+   },[BiddingDataForAuction,setBiddingDataForAuction])
     
 
     const getDataToAuctionDetailList = async (id) =>{
