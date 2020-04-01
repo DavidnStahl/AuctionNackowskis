@@ -100,7 +100,7 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
       <br />
       <label>SkapadAv</label>
         <br />
-        <input type="text" name="SkapadAv" ref={register({ required: true })} />
+        <input type="hidden" name="SkapadAv" value={sessionStorage.getItem("user")} ref={register({ required: true })} />
         <br />
             {errors.SkapadAv && 'Please enter your name'}
         <br /><br />
