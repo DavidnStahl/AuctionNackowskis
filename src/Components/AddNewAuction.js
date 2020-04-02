@@ -1,42 +1,13 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import {SaveNewAuctionContext} from '../Contexts/SaveNewAuctionContext';
-import {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import {useHistory} from 'react-router'
-///Din komponent Micke////
-///AddNewAuction är functionen du anropar i din knapp när man submitar Auktionen
-// tex skapar du en function saveData som tar alla refs från inputsen sen i den functionen skapar du ett object data som du sedan stoppar in
-/// som inparameter i AddNewAuction(data);
-/* exemple
-
-
-// Ska ta refs
-const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
-    let startDate = new Date()
-      let endDate = new Date();
-      endDate.setHours(endDate.getHours() + 60);  här sätter man hur många timmar auktionen ska leva. exemple 60
-
-// Objekt
-  let data = {
-      "Titel": titel,
-      "Beskrivning": beskrivning,
-      "StartDatum": startDate,
-      "SlutDatum": endDate,
-      "Gruppkod": 2240,
-      "Utropspris": utropspris,
-      "SkapadAv": skapadav   
-  }
-
-  AddNewAuction(data);
-}*/
-
-
-//Mickes Komponent
 
 
     function App() {
         const { register, handleSubmit, errors } = useForm(); // initialise the hook
         const [NewAuctionData, setNewAuctionData, AddNewAuction] = useContext(SaveNewAuctionContext);
+        const [dateError, setdateError] = useState();
               const history = useHistory()
 
 
@@ -45,14 +16,12 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
 
 
           if(Date.parse(data.StartDatum)<Date.parse(currentdate))
-          {          alert("Please write correct start Date, the data must be at after current date and time!");
-
- 
+          {         
+                   setdateError("Please write correct start Date, the data must be after current date and time!")
           }
        else if(data.SlutDatum<data.StartDatum)
         {        
-
-           alert("The end date can't be before the start date!");
+           setdateError("The end date can't be before the start date!")
 
         }
 
@@ -85,9 +54,13 @@ const saveData = (titel,beskrivning,slutdatum,utropspris,skapadav) => {
             </div>
             <label for="StartDate">Auction start date:</label>
              <br />
-            <input type="datetime-local" name="StartDatum" className="text-center" id="StartDate" style={{maxWidth: "20%", align:"center" }}  ref={register({ required:true}  )} />
+             <span style={{color: "red"}}>{dateError}</span><br/>
+            <input type="datetime-local" name="StartDatum" className="text-center" id="StartDate" style={{maxWidth: "20%", align:"center" }} ref={register({ required:true})} />
             <br/>
+            
             {errors.StartDatum && errors.StartDatum.type === 'required' && <span style={{color: "red"}}>Start Date is required.</span>}
+            
+
             <br/>
 
             <label for="EndDate">Auction end date:</label>

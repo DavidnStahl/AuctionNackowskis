@@ -1,73 +1,11 @@
 import React, {createContext,useState,useEffect} from 'react';
-import {useHistory} from 'react-router'
 
 export const DetailViewAuctionContext = createContext();
 
 const DetailViewAuctionContextProvider = (props) => {
     const [DetailDataForAuction, setDetailDataForAuction] = useState();
     const [BiddingDataForAuction, setBiddingDataForAuction] = useState();
-    const [DetailViewItemToShow, setDetailViewItemToShow] = useState([]);
     
-    const history = useHistory();
-    /*const detailViewActionStateHandler = async (data) => {
-        if(data !== undefined){
-            if(data.SkapadAv === sessionStorage.getItem("user")){
-                //await getSelectedAuctionData(data.AuktionID)
-                console.log("skapat av user")
-                let bidding = await getAuctionBiddingData(data.AuktionID)
-                sessionUserInloggedAuctionStateHandler(bidding)
-               } else {
-                //await getSelectedAuctionData(data.AuktionID)
-                await getAuctionBiddingData(data.AuktionID)
-                sessionUserCanBidStateHandler()
-               }
-        }
-       
-    }
-
-    const sessionUserCanBidStateHandler = () => {
-            setDetailViewItemToShow(() => {
-                console.log("Auction som går att bidda på")
-                return ("Auction som går att bidda på ")  
-    })}
-
-    const sessionUserInloggedAuctionStateHandler = (biddinghistory) => {
-        if(biddinghistory.length === 0){
-            setDetailViewItemToShow(() => {
-                console.log("Auction som man kan ta bort eller ändra")
-                return ("Auction som man kan ta bort eller ändra")
-            })
-        }else{
-            setDetailViewItemToShow(() => {
-                console.log("Auction som man inte kan bidda på men se historik")
-                return ("Auction som man inte kan bidda på men se historik")
-            })
-        }
-    }*7
-    
-    useEffect(() => {
-       // deleteAuction(4605);
-       /* UpdateAuction({
-            "AuktionID": 4606,
-            "Titel": "test",
-            "Beskrivning": "testUpdate",
-            "StartDatum": "2020-03-29T10:39:28.8511151+00:00",
-            "SlutDatum": "2020-03-29T10:39:28.8511151+00:00",
-            "Gruppkod": 2240,
-            "Utropspris": 1000,
-            "SkapadAv": "david"
-        })*/
-        //getSelectedAuctionData(4606);//
-        
-        /*useEffect(() => {
-        //getAuctionBiddingData(4665)
-        createBidOnAuction({
-            "Summa": 4000,
-            "AuktionID": 4665,
-            "Budgivare": "David test"
-        })
-    },[])*/
-
     useEffect(() => {
 
     },[])
@@ -128,11 +66,8 @@ const DetailViewAuctionContextProvider = (props) => {
         let url_delete_by_AuctionID = `https://nackowskis.azurewebsites.net/api/Auktion/2240/${id}`;
         await fetch(url_delete_by_AuctionID, {
         method: 'DELETE'}).then(data => {
-            window.location.reload(false);})
-        
-    })
-    
-                             
+            window.location.reload(false);})        
+    })                         
      return (
           <DetailViewAuctionContext.Provider value={[DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction]}>
             {props.children}

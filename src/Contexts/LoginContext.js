@@ -27,7 +27,6 @@ const LoginContextProvider = (props) => {
         let users = JSON.parse(localStorage.getItem("users"))
         if(users !== null){
             let checkIfUserExistInLocalStorage = users.filter(user => user === name)
-            //console.log(checkIfUserExistInLocalStorage)
             if(checkIfUserExistInLocalStorage.length === 0){
                 users.push(name);
                 localStorage.setItem("users",JSON.stringify(users))

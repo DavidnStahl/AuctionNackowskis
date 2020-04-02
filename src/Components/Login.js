@@ -16,24 +16,28 @@ const Login = React.memo(() => {
 
     return (
         <div className="container text-center">
+            <br/>
+            <h1>Login</h1>
             <div className="wrapper fadeInDown">
             <div id="formContent">
-
-            <div className="fadeIn first">
-            <img src="https://www.freeiconspng.com/uploads/login-button-png-5.png" id="icon" alt="User Icon" />
-            </div>
+                <br/>
+            <label className="text-white" for="login"><h4>Username:</h4></label>
+            <br/>
             <span className="text-danger">{loginError}</span>
                 <input type="text" id="login" className="fadeIn second" name="login" placeholder="Write your name" ref={name} />
                 <br/>
-                <button className="fadeIn fourth btn btn-primary" onClick={() => {setSessionUser(name.current.value)}}>Log in</button>
+                <br/>
+                <button className="fadeIn fourth btn btn-primary" onClick={() => {setSessionUser(name.current.value)}}>Login</button>
+                <br/>
                 <br/>
             </div>
-          </div>
+            </div>
         </div>
     )
 })
 
 export default Login
+
 
 
 

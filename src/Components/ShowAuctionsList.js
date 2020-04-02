@@ -2,43 +2,35 @@ import React, { useContext, useEffect, useState} from "react";
 import { GetAuctionsContext } from "../Contexts/GetAuctionsContext";
 import AuctionsListItem from "./AuctionsListItem";
 import DetailViewAuction from "./DetailViewAuction";
-///Din komponent marwan////
-//när programmet startar kommer getOpenAuctions köras
-// useEffect kommer rendera din komponent när david har hämtat data från databasen å gjort en setAuctionsToShow(data)
-// då kommer AuctionsToShow innehålla alla öppna auctions som en array med objects.
-// så du kommer kunna använda AuctionsToShow för ditt table, där du kan lista ut alla auctions.
 
 const ShowAuctionsList = React.memo(() => {
+
   const [isShowingDetails, setIsShowingDetails] = useState([]);
 
   const [
-    AuctionsToShow,
-    setAuctionsToShow,
-    getOpenAuctions,
-    getSearchedResultAuctions
+    AuctionsToShow, setAuctionsToShow,getSearchedResultAuctions
   ] = useContext(GetAuctionsContext);
-  //getOpenAuctions hämtar data från databasen å sparar det i AuctionsToShow i GetOpenAuctionsContext.
+
   useEffect(() => {
-    //console.log("hej")
     getSearchedResultAuctions("open")
   },[]);
 
   useEffect(() => {}, [AuctionsToShow,setAuctionsToShow]);
-  ///här renderar du om din komponent när data är hämtat
   useEffect(() => {}, [AuctionsToShow]);
 
-  //Visar eller döljer DetailViewAuction
   const showDetails = e => {
-    //console.log(isShowingDetails);
+
   
-    if (isShowingDetails.indexOf(e.target.value) > -1) {
-      let newState = isShowingDetails.filter(id => id !== e.target.value);
+  if (isShowingDetails.indexOf(e.target.value) > -1) {
+    let newState = isShowingDetails.filter(id => id !== e.target.value);
       
-      console.log(newState);
+    console.log(newState);
       
-      return setIsShowingDetails(newState);
+    return setIsShowingDetails(newState);
     }
+    
     console.log("hej");
+    
     setIsShowingDetails(isShowingDetails.concat(e.target.value));
   };
 

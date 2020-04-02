@@ -17,7 +17,6 @@ const DetailItem = React.memo((props) => {
     },[errorMessageBid,seterrorMessageBid])
 
     useContext(() =>{
-      // console.log("hahaha")
     },[datainfo]) 
     
     useEffect(() => {
@@ -26,43 +25,36 @@ const DetailItem = React.memo((props) => {
 
     useEffect(() => {
       setdatainfo(props.auctionDetails)
-      //console.log(datainfo)
        if(props.auctionDetails.length !== 0){
         props.auctionDetails[1].sort((a,b) => (b.Summa-a.Summa))
         setTableContent2(() => {
 
-                  return(<React.Fragment><td>{props.auctionDetails[0].Titel}</td>
-                                         <td>{props.auctionDetails[0].Beskrivning}</td>
-                                         <td>{props.auctionDetails[0].StartDatum.replace("T"," ")}</td>
-                                         <td>{props.auctionDetails[0].SlutDatum.replace("T"," ")}</td>
-                                         <td>{props.auctionDetails[0].Utropspris.toLocaleString()}</td>
-                                         <td>{props.auctionDetails[0].SkapadAv}</td>
+                  return(<React.Fragment>
+                      <td>{props.auctionDetails[0].Titel}</td>
+                      <td>{props.auctionDetails[0].Beskrivning}</td>
+                      <td>{props.auctionDetails[0].StartDatum.replace("T"," ")}</td>
+                      <td>{props.auctionDetails[0].SlutDatum.replace("T"," ")}</td>
+                      <td>{props.auctionDetails[0].Utropspris.toLocaleString()}</td>
+                      <td>{props.auctionDetails[0].SkapadAv}</td>
                   </React.Fragment>)
                   })
-
                   setTableContent(() =>{
                     let x = props.auctionDetails[1].map((item) => {
-                      return (<React.Fragment><tr><td>{item.Summa.toLocaleString()}</td><td>{item.Budgivare}</td></tr></React.Fragment>)})
-    
+                      return (<React.Fragment><tr><td>{item.Summa.toLocaleString()}</td><td>{item.Budgivare}</td></tr></React.Fragment>)})    
                       return x})
                   setTableContent3(() => {
                     if(sessionStorage.getItem("user") !== props.auctionDetails[0].SkapadAv){
                       return (<React.Fragment><label>My bid:</label>
-                        <input type="number" ref={input}/>       
-                       
-                        <br /><br />
-                
+                        <input type="number" ref={input}/>                             
+                        <br /><br />                
                         <button class="btn btn-primary" onClick={
                             () => {
-                                                                    // AuktionID behöver skickas hit
-                                saveEstimate(input.current.value, bidder.value, props.id);
-                                                                    //^...............^
+                                saveEstimate(input.current.value, bidder.value, props.id);                                                                    //^...............^
                             }
                         }>Save bid</button></React.Fragment>)
                     } 
                     return
                   })
-
         }
     },[getDataToAuctionDetailList])
 
@@ -104,14 +96,12 @@ const DetailItem = React.memo((props) => {
       })
       props.getdetails(true)
       }else{
-        //console.log("to low")
         seterrorMessageBid(() =>{
-          return <span className="text-danger">Too low bid</span>
-          
+          return <span className="text-danger">Too low bid</span>         
       })
     }
-     }else{
-     
+     }else{ 
+
       if(props.auctionDetails[0].Utropspris < sum){
         createBidOnAuction({
           "Summa": sum,
@@ -124,27 +114,18 @@ const DetailItem = React.memo((props) => {
       })
       props.getdetails(true)
       }else{
-        //console.log("to low")
         seterrorMessageBid(() =>{
-          return <span className="text-danger">Too low bid</span>
-          
+          return <span className="text-danger">Too low bid</span>         
       })
     }
-     }
-      
-      
-        
+     }    
     };
-
     return(
-        
         <React.Fragment>
-        <div className="container text-center">
-        
+        <div className="container text-center">        
         <div className="container text-center">
             <div className="wrapper fadeInDown">
             <div id="formContent2">
-
             <div className="fadeIn first form-center">
             <table className="table table-borderless">
             <thead>
@@ -165,16 +146,11 @@ const DetailItem = React.memo((props) => {
             <th scope="col">Bid</th>
             <th scope="col">Bidder</th>
           </tr></thead>
-            {TableContent}</table>
-            
+            {TableContent}</table>           
             </div>
-
             </div>
           </div>
-        </div>
-        
-        
-        
+        </div>                       
         </div>
         </React.Fragment>
     );

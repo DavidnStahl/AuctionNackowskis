@@ -20,27 +20,19 @@ const EditAuction = React.memo((props) => {
         e.target.value = props.auctionDetails[0].Titel;
     }
     const eraseDescription = (e) => {
-        e.target.value = props.auctionDetails[0].Beskrivning;
-        
+        e.target.value = props.auctionDetails[0].Beskrivning;      
       }
       const eraseStartDate = (e) => {
-        e.target.value = props.auctionDetails[0].StartDatum;
-        
+        e.target.value = props.auctionDetails[0].StartDatum;     
       }
       const eraseEndDate = (e) => {
-        e.target.value = props.auctionDetails[0].SlutDatum;
-        
+        e.target.value = props.auctionDetails[0].SlutDatum;      
       }
       const eraseStartingPrice = (e) => {
-        e.target.value = props.auctionDetails[0].Utropspris;
-        
+        e.target.value = props.auctionDetails[0].Utropspris;      
       }
-
-
     useEffect(()=> {
         if(props.auctionDetails.length !== 0){
-           // console.log(AuctionsToShow)
-            //console.log(props.isShowing)
             setTableContent(() => {
                
                 return(<React.Fragment>
@@ -83,28 +75,18 @@ const EditAuction = React.memo((props) => {
                     }}>Delete Auction</button>
             <br /><br />
                     </React.Fragment>)
-            })
-            
+            })   
         }
     },[getDataToAuctionDetailList])
 
     useEffect(() => {
 
     },[props.getdetails])
-    // hela returnen ska egentligen skapas
-
-    let [title, 
-        description, 
-        startDate, 
-        endDate, 
-        estimate, 
-        createdBy] = useState("");
 
     function saveData(title, description, startDate, endDate, estimate)
     {
         let parsedStartDate = new Date(startDate);
         let parsedEndDate = new Date(endDate);
-
         let auction = {
             "AuktionID": props.id,
             "Titel": title,
@@ -114,31 +96,21 @@ const EditAuction = React.memo((props) => {
             "Gruppkod": 2240,
             "Utropspris": estimate,
             "SkapadAv": sessionStorage.getItem("user")
-        }
-        
+        }       
         console.log(auction);
-
         UpdateAuction(auction);
     }
-
-    
-
-    return (
-        
+    return (       
         <React.Fragment>
         <div className="container text-center">
             <div className="wrapper fadeInDown">
             <div id="formContent">
-
             <div className="fadeIn first">
-
             {TableContent}
             </div>
             </div>
             </div>
-            </div>
-        
-
+            </div>       
         </React.Fragment>
     );
 })

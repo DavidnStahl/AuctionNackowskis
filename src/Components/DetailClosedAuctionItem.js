@@ -9,7 +9,6 @@ const DetailClosedAuctionItem = React.memo(props => {
   const [TableContent2, setTableContent2] = useState();
 
   useEffect(() => {
-    //console.log(props.auctionDetails);
   }, []);
 
   useEffect(() => {}, [
@@ -22,7 +21,6 @@ const DetailClosedAuctionItem = React.memo(props => {
 
   useEffect(() => {
     setDataInfo(props.auctionDetails);
-    //console.log(datainfo)
     if (props.auctionDetails.length !== 0) {
         let arr = [""]
         if(props.auctionDetails[1].length !== 0){
@@ -54,7 +52,6 @@ const DetailClosedAuctionItem = React.memo(props => {
       });
     }
   }, [getDataToAuctionDetailList]);
-  //props.auctionDetails
 
   return (
     <div className="container text-center">
@@ -63,8 +60,7 @@ const DetailClosedAuctionItem = React.memo(props => {
           <div className="fadeIn first form-center">
             <table className="table table-borderless">
             <thead>
-              <tr>
-              
+              <tr>              
                 <th scope="col">Title</th>
                 <th scope="col">description</th>
                 <th scope="col">Start Date</th>
@@ -85,10 +81,8 @@ const DetailClosedAuctionItem = React.memo(props => {
                 <th scope="col">Highest Bid</th>
                 <th scope="col">Winning Bidder</th>
                 </tr>
-                </thead>
-                
-              {TableContent}
-              
+                </thead>                
+              {TableContent}              
             </table>
           </div>
         </div>

@@ -10,11 +10,13 @@ const GetAuctionsContextProvider = (props) => {
     
     const getSearchedResultAuctions = async (searchInput) =>{      
       await fetch(url).then(res => res.json()).then((data) => {
-        if(searchInput === undefined) {
-          setAuctionsToShow(data)
+        if(searchInput === undefined) {          
+          let x = data.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));
+          setAuctionsToShow(x)
         }else if(searchInput === "open"){
           let filteredData = data.filter(auction => new Date(auction.SlutDatum) > Date.now())
           let x = filteredData.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));
+          console.log(x)
           setAuctionsToShow(x)
         }
         else{
@@ -22,19 +24,9 @@ const GetAuctionsContextProvider = (props) => {
           let x = filteredData.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));  
         setAuctionsToShow(x)
         }})
-  }
-    const getOpenAuctions = async() =>{
-      if(AuctionsToShow.length === 0){
-        await fetch(url).then(res => res.json()).then((data) => {
-          let filteredData = data.filter(auction => new Date(auction.SlutDatum) > Date.now())
-          let x = filteredData.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));
-          setAuctionsToShow(x)              
-        })
-      }
-        
-    }                           
+  }                            
      return (
-          <GetAuctionsContext.Provider value={[AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions]}>
+          <GetAuctionsContext.Provider value={[AuctionsToShow, setAuctionsToShow,getSearchedResultAuctions]}>
             {props.children}
           </GetAuctionsContext.Provider>
   )   

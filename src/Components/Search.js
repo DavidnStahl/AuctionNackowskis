@@ -4,24 +4,19 @@ import React,{useContext,useEffect,useState,useRef} from 'react'
 const Search = React.memo(() =>{ 
 
     const searchword = useRef();
-    const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext);
-    /*useEffect(()=>{
-        handleSubmit(searchword.current.value)
-    },[AuctionsToShow, setAuctionsToShow])*/
+    const [AuctionsToShow, setAuctionsToShow,getSearchedResultAuctions] = useContext(GetAuctionsContext);
 
-  const handleSubmit = (search) => {
-      getSearchedResultAuctions(search);
-  }
+    const handleSubmit = (search) => {  
+        getSearchedResultAuctions(search);
+    }
         return(
-            <div>
-             
+            <div>           
             <input  type="text" name="search" ref={searchword}/><br/>
-
             <button class="btn btn-danger" onClick={() => handleSubmit(searchword.current.value)}>Search </button>
-         <br/>
-         <br/>
-         </div>
-
+            <br/>
+            <br/>
+            </div>
         )
-})
+    })
+
 export default Search
