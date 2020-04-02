@@ -12,7 +12,12 @@ const GetAuctionsContextProvider = (props) => {
       await fetch(url).then(res => res.json()).then((data) => {
         if(searchInput === undefined) {
           setAuctionsToShow(data)
-        }else{
+        }else if(searchInput === "open"){
+          let filteredData = data.filter(auction => new Date(auction.SlutDatum) > Date.now())
+          let x = filteredData.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));
+          setAuctionsToShow(x)
+        }
+        else{
           let filteredData = data.filter(auction => auction.Titel.toLowerCase().startsWith(searchInput.toLowerCase()));
           let x = filteredData.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));  
         setAuctionsToShow(x)

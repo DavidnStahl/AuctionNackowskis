@@ -20,7 +20,7 @@ const ShowAuctionsList = React.memo(() => {
   //getOpenAuctions hämtar data från databasen å sparar det i AuctionsToShow i GetOpenAuctionsContext.
   useEffect(() => {
     //console.log("hej")
-    getOpenAuctions();
+    getSearchedResultAuctions("open")
   },[]);
 
   useEffect(() => {}, [AuctionsToShow,setAuctionsToShow]);
