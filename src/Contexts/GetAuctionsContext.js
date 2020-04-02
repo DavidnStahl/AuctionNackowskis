@@ -1,4 +1,4 @@
-import React, {createContext,useState,useEffect} from 'react';
+import React, {createContext,useState,useEffect,useContext} from 'react';
 
 export const GetAuctionsContext = createContext();
 
@@ -7,12 +7,7 @@ const url = "https://nackowskis.azurewebsites.net/api/Auktion/2240"
 const GetAuctionsContextProvider = (props) => {
 
     const [AuctionsToShow, setAuctionsToShow] = useState([])
-     
-
-     useEffect(() => {
-     },[])
-   
-
+    
     const getSearchedResultAuctions = async (searchInput) =>{      
       await fetch(url).then(res => res.json()).then((data) => {
         if(searchInput === undefined) {

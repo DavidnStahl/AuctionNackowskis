@@ -71,7 +71,6 @@ const DetailViewAuction = React.memo(props => {
   const GetDetails = async bolean => {
     if (bolean === true) {
       let data = await getDataToAuctionDetailList(props.id);
-      //console.log(data);
       setauctionListItemData(data);
     }
   };

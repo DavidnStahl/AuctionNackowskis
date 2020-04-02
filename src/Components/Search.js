@@ -12,7 +12,7 @@ const Search = React.memo(() =>{
         return(
             <div>
              
-            <input type="text" name="search" ref={searchword}/><br/>
+            <input  type="text" name="search" ref={searchword}/><br/>
 
             <button class="btn btn-danger" onClick={() => handleSubmit(searchword.current.value)}>Search </button>
          <br/>

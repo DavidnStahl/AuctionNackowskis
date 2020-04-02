@@ -97,7 +97,7 @@ const DetailItem = React.memo((props) => {
           "Summa": sum,
           "AuktionID": props.id,
           "Budgivare": sessionStorage.getItem("user")
-      });       
+      },props.id);       
       seterrorMessageBid(() =>{
         return <span className="text-success">Your bid was accepted</span>
         

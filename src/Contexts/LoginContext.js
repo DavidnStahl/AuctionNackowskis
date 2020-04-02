@@ -17,7 +17,8 @@ const LoginContextProvider = (props) => {
             home.hidden = false;
             let addnewauction = document.getElementById("addnewauction")
             addnewauction.hidden = false;
-            history.push('/Home')           
+            history.push('/Home')
+            window.location.reload();        
         }else{
           setLoginError("minimum characters is 2")
         }    
