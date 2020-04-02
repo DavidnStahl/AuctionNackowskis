@@ -8,6 +8,7 @@
 
 .addnewauction{
   background-color: rgb(63, 67, 75);
+  border-radius: 10px;
 }
 html,body{
   background-color: black;

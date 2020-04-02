@@ -1,6 +1,7 @@
 import {GetAuctionsContext} from '../Contexts/GetAuctionsContext';
 import React,{useContext,useEffect,useState,useRef} from 'react'
 
+
 const Search = React.memo(() =>{ 
 
     const searchword = useRef();
@@ -10,12 +11,20 @@ const Search = React.memo(() =>{
         getSearchedResultAuctions(search);
     }
         return(
-            <div>           
-            <input  type="text" name="search" ref={searchword}/><br/>
-            <button class="btn btn-danger" onClick={() => handleSubmit(searchword.current.value)}>Search </button>
+            <>
+            <div>
+            
+   
+            <input  type="text" name="search" ref={searchword}/>
+        
+            <button  className="btn-lg btn-danger" onClick={() => handleSubmit(searchword.current.value)}><i class="fa fa-search"></i> Search </button>
+          
             <br/>
             <br/>
             </div>
+    
+            </>
+
         )
     })
 

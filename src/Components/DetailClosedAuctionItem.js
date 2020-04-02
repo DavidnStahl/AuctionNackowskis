@@ -30,13 +30,26 @@ const DetailClosedAuctionItem = React.memo(props => {
       setTableContent2(() => {
         return (
           <React.Fragment>
-            <td>{props.auctionDetails[0].Titel}</td>
-            <td>{props.auctionDetails[0].Beskrivning}</td>
-            <td>{props.auctionDetails[0].StartDatum.replace("T"," ")}</td>
-            <td>{props.auctionDetails[0].SlutDatum.replace("T"," ")}</td>
-            <td>{props.auctionDetails[0].Utropspris}</td>
-            <td>{props.auctionDetails[0].SkapadAv}</td>
-          </React.Fragment>
+                  <br/>
+                  <span style={{color:"black"}}><h3>{props.auctionDetails[0].Titel}</h3></span><br/>
+                  <span style={{color:"black"}}><p>{props.auctionDetails[0].Beskrivning}</p></span><br/>
+                  <table className="table table-borderless">
+                  <thead>
+                      <tr>
+                       <th scope="col">Start Date</th>
+                       <th scope="col">End Date</th>
+                       <th scope="col">Start price</th>
+                       <th scope="col">Created by</th>           
+                      </tr>
+                      </thead><tr>
+                      
+                      <td>{props.auctionDetails[0].StartDatum.replace("T"," ")}</td>
+                      <td>{props.auctionDetails[0].SlutDatum.replace("T"," ")}</td>
+                      <td>{props.auctionDetails[0].Utropspris.toLocaleString()}</td>
+                      <td>{props.auctionDetails[0].SkapadAv}</td>
+                      </tr>
+                      </table>
+                  </React.Fragment>
         );
       });
 
@@ -58,23 +71,8 @@ const DetailClosedAuctionItem = React.memo(props => {
       <div className="wrapper fadeInDown">
         <div id="formContent2">
           <div className="fadeIn first form-center">
-            <table className="table table-borderless">
-            <thead>
-              <tr>              
-                <th scope="col">Title</th>
-                <th scope="col">description</th>
-                <th scope="col">Start Date</th>
-                <th scope="col">End Date</th>
-                <th scope="col">Start price</th>
-                <th scope="col">Created by</th>
-                </tr>
-                </thead>
-                <tbody>
-              <tr>
-              {TableContent2}
-              </tr>
-              </tbody>
-            </table>
+          <br/>
+            {TableContent2}
             <table className="table table-borderless">
             <thead>
               <tr>

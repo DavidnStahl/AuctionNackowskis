@@ -40,7 +40,7 @@ const ShowAuctionsList = React.memo(() => {
         <thead>
           <tr>
             <th scope="col" >Title</th>
-            <th scope="col">Description</th>
+            {/*<th scope="col">Starts</th>*/}
             <th scope="col">Ends</th>
             <th scope="col">Start price</th>
             <th scope="col">Created by</th>
@@ -55,6 +55,7 @@ const ShowAuctionsList = React.memo(() => {
                   id={auction.AuktionID}
                   titel={auction.Titel}
                   beskrivning={auction.Beskrivning}
+                  startDatum={auction.StartDatum}
                   slutDatum={auction.SlutDatum}
                   utropspris={auction.Utropspris}
                   skapadAv={auction.SkapadAv}

@@ -30,12 +30,25 @@ const DetailItem = React.memo((props) => {
         setTableContent2(() => {
 
                   return(<React.Fragment>
-                      <td>{props.auctionDetails[0].Titel}</td>
-                      <td>{props.auctionDetails[0].Beskrivning}</td>
+                  <br/>
+                  <span style={{color:"black"}}><h3>{props.auctionDetails[0].Titel}</h3></span><br/>
+                  <span style={{color:"black"}}><p>{props.auctionDetails[0].Beskrivning}</p></span><br/>
+                  <table className="table table-borderless">
+                  <thead>
+                      <tr>
+                       <th scope="col">Start Date</th>
+                       <th scope="col">End Date</th>
+                       <th scope="col">Start price</th>
+                       <th scope="col">Created by</th>           
+                      </tr>
+                      </thead><tr>
+                      
                       <td>{props.auctionDetails[0].StartDatum.replace("T"," ")}</td>
                       <td>{props.auctionDetails[0].SlutDatum.replace("T"," ")}</td>
                       <td>{props.auctionDetails[0].Utropspris.toLocaleString()}</td>
                       <td>{props.auctionDetails[0].SkapadAv}</td>
+                      </tr>
+                      </table>
                   </React.Fragment>)
                   })
                   setTableContent(() =>{
@@ -44,7 +57,7 @@ const DetailItem = React.memo((props) => {
                       return x})
                   setTableContent3(() => {
                     if(sessionStorage.getItem("user") !== props.auctionDetails[0].SkapadAv){
-                      return (<React.Fragment><label>My bid:</label>
+                      return (<React.Fragment><label></label>
                         <input type="number" ref={input}/>                             
                         <br /><br />                
                         <button class="btn btn-primary" onClick={
@@ -127,17 +140,7 @@ const DetailItem = React.memo((props) => {
             <div className="wrapper fadeInDown">
             <div id="formContent2">
             <div className="fadeIn first form-center">
-            <table className="table table-borderless">
-            <thead>
-            <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">End Date</th>
-            <th scope="col">Start price</th>
-            <th scope="col">Created by</th>           
-          </tr>
-            <tr>{TableContent2}</tr></thead></table>
+            {TableContent2}
             {errorMessageBid}<br/>
             {TableContent3}
             <table className="table table-borderless">
@@ -146,6 +149,7 @@ const DetailItem = React.memo((props) => {
             <th scope="col">Bid</th>
             <th scope="col">Bidder</th>
           </tr></thead>
+            
             {TableContent}</table>           
             </div>
             </div>

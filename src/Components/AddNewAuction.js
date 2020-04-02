@@ -39,20 +39,20 @@ import {useHistory} from 'react-router'
           <form onSubmit={handleSubmit(onSubmit)} className="container text-center addnewauction text-white">
              <div class="form-group">
              <br/>
-            <label for="Titel">Title:</label><br/>
+            <label for="Titel"><h4>Title:</h4></label><br/>
             <input type="text" className="form-control" id="Titel" name="Titel"ref={register({ required: true })} />
             <br/>
             {errors.Titel && <span style={{color: "red"}}>This is required</span>}
             </div>
             
             <div class="form-group">
-            <label for="Beskrivning">Description:</label>
+            <label for="Beskrivning"><h4>Description:</h4></label>
             <br/>
             <input type="text" name="Beskrivning" className="form-control" id="Beskrivning" ref={register({ required: true })} />
             <br/>
             {errors.Beskrivning && <span style={{color: "red"}}>Description is required.</span>}
             </div>
-            <label for="StartDate">Auction start date:</label>
+            <label for="StartDate"><h4>Auction start date:</h4></label>
              <br />
              <span style={{color: "red"}}>{dateError}</span><br/>
             <input type="datetime-local" name="StartDatum" className="text-center" id="StartDate" style={{maxWidth: "20%", align:"center" }} ref={register({ required:true})} />
@@ -63,14 +63,14 @@ import {useHistory} from 'react-router'
 
             <br/>
 
-            <label for="EndDate">Auction end date:</label>
+            <label for="EndDate"><h4>Auction end date:</h4></label>
              <br />
             <input type="datetime-local" name="SlutDatum" className="text-center" id="EndDate" style={{maxWidth: "20%", align:"center"}} ref={register({ required: true })} />
             <br/>
             {errors.SlutDatum && <span style={{color: "red"}}>End Date is required.</span>}
             <br />
             <div class="form-group">
-            <label for="Price">Starting price:</label>
+            <label for="Price"><h4>Starting price:</h4></label>
             <br />
             <input type="number" name="Utropspris" className="form-control" id="Price" ref={register({ required: true,  min:"1", pattern: /\d+/ })} />
            <br />      
@@ -80,7 +80,9 @@ import {useHistory} from 'react-router'
         <input type="hidden" name="SkapadAv" value={sessionStorage.getItem("user")} ref={register({ required: true })} />
      
         <input type="hidden" name="Gruppkod" value="2240"  ref={register()}/> 
-            <input type="submit" value="Create Auction" />
+        <div class="form-group">
+            <input type="submit" value="Create Auction" className="btn btn-primary"/>
+            </div>
           </form>
           </div>
           </React.Fragment>

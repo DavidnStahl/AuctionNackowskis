@@ -5,9 +5,10 @@ export const DetailViewAuctionContext = createContext();
 const DetailViewAuctionContextProvider = (props) => {
     const [DetailDataForAuction, setDetailDataForAuction] = useState();
     const [BiddingDataForAuction, setBiddingDataForAuction] = useState();
-    
-    useEffect(() => {
 
+    useEffect(() => {
+        let d = new Date();
+     console.log(d.setHours(2))
     },[])
 
     useEffect(() => {
