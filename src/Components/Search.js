@@ -5,6 +5,9 @@ const Search = React.memo(() =>{
 
     const searchword = useRef();
     const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext);
+    /*useEffect(()=>{
+        handleSubmit(searchword.current.value)
+    },[AuctionsToShow, setAuctionsToShow])*/
 
   const handleSubmit = (search) => {
       getSearchedResultAuctions(search);
