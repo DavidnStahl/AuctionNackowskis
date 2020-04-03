@@ -30,7 +30,11 @@ const DetailViewAuction = React.memo(props => {
     //console.log(auctionListItemData);
     //console.log(auctionListItemData[0])
     if (auctionListItemData[0] !== undefined) {
+      
+      
       setListItemVersion(() => {
+        let y = Date.now() + 3600000
+        //y += 3600000
         //console.log(auctionListItemData[0].SkapadAv)
         //console.log(sessionStorage.getItem("user"))
         if (
@@ -40,7 +44,8 @@ const DetailViewAuction = React.memo(props => {
           //"ListState: egen auction som är tom och går att ta bort och uppdatera"
           return  (<EditAuction id={props.id} isShowing={props.isShowing}  getdetails={GetDetails} auctionDetails={auctionListItemData} />);
         } else if (
-          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].StartDatum) > Date.now()
+          
+          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].StartDatum) > y
           
         ) {
           //"ListState: egen auction som har bud och går inte att ta bort eller uppdatera";
@@ -59,7 +64,7 @@ const DetailViewAuction = React.memo(props => {
             auctionDetails={auctionListItemData}
           />);
         } else if (
-          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].SlutDatum) > Date.now()
+          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].SlutDatum) > y
         ) {
           console.log("annans auction som går att buda på")
           //"ListState: annans auction som går att buda på"
@@ -69,7 +74,7 @@ const DetailViewAuction = React.memo(props => {
             getdetails={GetDetails}
             auctionDetails={auctionListItemData}
           />);
-        } else if (new Date(auctionListItemData[0].SlutDatum) < Date.now()) {
+        } else if (new Date(auctionListItemData[0].SlutDatum) < y) {
           //"ListState: stäng auction"
           console.log("stängd auction")
           

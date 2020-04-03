@@ -48,7 +48,8 @@ const DetailViewAuctionContextProvider = (props) => {
                'Accept': 'application/json, text/plain, */*',
                'Content-Type': 'application/json'
              }
-             }).then(function () {
+             }).then(function (data) {
+               console.log(data)
                 getDataToAuctionDetailList(id)
                  })}
 
