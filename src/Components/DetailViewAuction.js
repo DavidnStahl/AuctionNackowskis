@@ -33,19 +33,20 @@ const DetailViewAuction = React.memo(props => {
       
       
       setListItemVersion(() => {
-        let y = Date.now() + 3600000
+        
         //y += 3600000
         //console.log(auctionListItemData[0].SkapadAv)
         //console.log(sessionStorage.getItem("user"))
         if (
           auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") &&
-          auctionListItemData[1].length === 0
+          auctionListItemData[1].length === 0 && Date.now() < new Date(auctionListItemData[0].SlutDatum)
+
         ) {
           //"ListState: egen auction som är tom och går att ta bort och uppdatera"
           return  (<EditAuction id={props.id} isShowing={props.isShowing}  getdetails={GetDetails} auctionDetails={auctionListItemData} />);
         } else if (
           
-          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].StartDatum) > y
+          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].StartDatum) > Date.now()
           
         ) {
           //"ListState: egen auction som har bud och går inte att ta bort eller uppdatera";
@@ -64,7 +65,7 @@ const DetailViewAuction = React.memo(props => {
             auctionDetails={auctionListItemData}
           />);
         } else if (
-          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].SlutDatum) > y
+          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].SlutDatum) > Date.now()
         ) {
           console.log("annans auction som går att buda på")
           //"ListState: annans auction som går att buda på"
@@ -74,7 +75,7 @@ const DetailViewAuction = React.memo(props => {
             getdetails={GetDetails}
             auctionDetails={auctionListItemData}
           />);
-        } else if (new Date(auctionListItemData[0].SlutDatum) < y) {
+        } else if (new Date(auctionListItemData[0].SlutDatum) < Date.now()) {
           //"ListState: stäng auction"
           console.log("stängd auction")
           

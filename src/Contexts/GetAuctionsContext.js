@@ -15,7 +15,6 @@ const GetAuctionsContextProvider = (props) => {
           setAuctionsToShow(x)
         }else if(searchInput === "open"){
           let y = Date.now()
-          y += 3600000
           let filteredData = data.filter(auction => new Date(auction.SlutDatum) > y)
           let x = filteredData.sort((a,b)=>new Date(a.SlutDatum)-new Date(b.SlutDatum));
           console.log(x)

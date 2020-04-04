@@ -40,7 +40,7 @@ const ShowAuctionsList = React.memo(() => {
         <thead>
           <tr>
             <th scope="col" >Title</th>
-            {/*<th scope="col">Starts</th>*/}
+            <th scope="col">Starts</th>
             <th scope="col">Ends</th>
             <th scope="col">Start price</th>
             <th scope="col">Created by</th>
