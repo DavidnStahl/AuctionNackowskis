@@ -46,7 +46,7 @@ const DetailViewAuction = React.memo(props => {
           return  (<EditAuction id={props.id} isShowing={props.isShowing}  getdetails={GetDetails} auctionDetails={auctionListItemData} />);
         } else if (
           
-          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].StartDatum) > Date.now()
+          auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].StartDatum) > Date.now() 
           
         ) {
           //"ListState: egen auction som har bud och går inte att ta bort eller uppdatera";
@@ -54,7 +54,7 @@ const DetailViewAuction = React.memo(props => {
           return ( <DetailClosedAuctionItem auctionDetails={auctionListItemData}/>)
         }else if (
           auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") &&
-          auctionListItemData[1].length !== 0
+          auctionListItemData[1].length !== 0 && new Date(auctionListItemData[0].SlutDatum) > Date.now()
         ) {
           //"ListState: egen auction som har bud och går inte att ta bort eller uppdatera";
           console.log("egen auction som har bud och går inte att ta bort eller uppdatera")
@@ -75,11 +75,13 @@ const DetailViewAuction = React.memo(props => {
             getdetails={GetDetails}
             auctionDetails={auctionListItemData}
           />);
-        } else if (new Date(auctionListItemData[0].SlutDatum) < Date.now()) {
+        } else if (auctionListItemData[0].SkapadAv !== sessionStorage.getItem("user") && new Date(auctionListItemData[0].SlutDatum) < Date.now()) {
           //"ListState: stäng auction"
           console.log("stängd auction")
           
           return (<DetailClosedAuctionItem auctionDetails={auctionListItemData}/>);
+        }else if(auctionListItemData[0].SkapadAv === sessionStorage.getItem("user") && new Date(auctionListItemData[0].SlutDatum) < Date.now()){
+        return (<DetailClosedAuctionItem auctionDetails={auctionListItemData}/>);
         }
       });
     }

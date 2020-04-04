@@ -31,8 +31,10 @@ const AuctionsListItem = React.memo(props => {
       let x = Date.now()
       let y = x - new Date(props.startDatum)
       
-      if(y > 0){
+      if(y > 0 && new Date(props.slutDatum) > Date.now()){
         return "Open"
+      }else if(y > 0 && new Date(props.slutDatum) < Date.now()){
+        return "Closed"
       }else{
         var seconds = (y / 1000 % 60).toFixed(0);
 
