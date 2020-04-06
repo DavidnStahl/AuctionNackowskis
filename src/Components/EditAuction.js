@@ -102,12 +102,12 @@ const EditAuction = React.memo((props) => {
        
             let auction = {
                 "AuktionID": props.id,
-                "Titel": title===""? props.auctionDetails[0].Titel:title,
+                "Titel": title===""||title===undefined? props.auctionDetails[0].Titel:title,
                 "Beskrivning": description===""?props.auctionDetails[0].Beskrivning:description,
                 "StartDatum": Date.parse(startDate)===isNaN||Date.parse(startDate)>Date.parse(endDate)?props.auctionDetails[0].StartDatum:startDate,
                 "SlutDatum": Date.parse(endDate)===isNaN||Date.parse(startDate)>Date.parse(endDate)?props.auctionDetails[0].SlutDatum:endDate,
                 "Gruppkod": 2240,
-                "Utropspris": estimate<1||estimate?props.auctionDetails[0].Utropspris:estimate,
+                "Utropspris": estimate<1||estimate===null?props.auctionDetails[0].Utropspris:estimate,
                 "SkapadAv": sessionStorage.getItem("user")
                  
         }
