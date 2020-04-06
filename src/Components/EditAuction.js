@@ -10,6 +10,7 @@ const EditAuction = React.memo((props) => {
     const [DetailDataForAuction, setDetailDataForAuction,BiddingDataForAuction, setBiddingDataForAuction,getSelectedAuctionData,getDataToAuctionDetailList,createBidOnAuction,UpdateAuction,deleteAuction] = useContext(DetailViewAuctionContext);
     const [AuctionsToShow, setAuctionsToShow,getOpenAuctions,getSearchedResultAuctions] = useContext(GetAuctionsContext)
     const [TableContent, setTableContent] = useState();
+    
     const titletext = useRef();
     const descriptiontext = useRef();
     const startdatetext = useRef();
@@ -38,24 +39,37 @@ const EditAuction = React.memo((props) => {
                 return(<React.Fragment>
                      <br />
                     <label>Title:</label>
+                    <br/>
+                    
                     <br />
                     <input type="text" ref={titletext} onClick={eraseTitle} placeholder={props.auctionDetails[0].Titel}/>                   
                     <br /><br />
                     <label>Description:</label>
+                    <br/>
+                    
+                    <br />
                     <input type="text" ref={descriptiontext} onClick={eraseDescription} placeholder={props.auctionDetails[0].Beskrivning}/>
+                    <br />
+                    <br/>
+                    
                     <br /><br />
                     <label>Start Date:</label>
-
+                    
                     <input type="datetime-local" ref={startdatetext} onClick={eraseStartDate} placeholder={props.auctionDetails[0].StartDatum}/>
-                    <br /><br />
+                    <br />
+                    <br/>
+                    
+                    <br />
                     <label>End Date:</label>
 
                     <input type="datetime-local" ref={enddatetext} onClick={eraseEndDate} placeholder={props.auctionDetails[0].SlutDatum}/>
-                    <br /><br />
+                    <br />
                     <label>Starting price</label>
-
+                    <br/>
+                    
+                    <br />
                     <input type="number" minValue="1" ref={startpricetext} onClick={eraseStartingPrice} placeholder={props.auctionDetails[0].Utropspris}/>
-                    <br /><br />
+                    <br />
                     <label>Created by: </label>
 
                     <span> {sessionStorage.getItem("user")}</span>
@@ -80,25 +94,26 @@ const EditAuction = React.memo((props) => {
     },[getDataToAuctionDetailList])
 
     useEffect(() => {
-
+         //console.log(new Date(""))
     },[props.getdetails])
 
     function saveData(title, description, startDate, endDate, estimate)
     {
-        let parsedStartDate = new Date(startDate);
-        let parsedEndDate = new Date(endDate);
-        let auction = {
-            "AuktionID": props.id,
-            "Titel": title,
-            "Beskrivning": description,
-            "StartDatum": parsedStartDate,
-            "SlutDatum": parsedEndDate,
-            "Gruppkod": 2240,
-            "Utropspris": estimate,
-            "SkapadAv": sessionStorage.getItem("user")
-        }       
-        console.log(auction);
-        UpdateAuction(auction);
+       
+            let auction = {
+                "AuktionID": props.id,
+                "Titel": title===""? props.auctionDetails[0].Titel:title,
+                "Beskrivning": description===""?props.auctionDetails[0].Beskrivning:description,
+                "StartDatum": Date.parse(startDate)===isNaN||Date.parse(startDate)>Date.parse(endDate)?props.auctionDetails[0].StartDatum:startDate,
+                "SlutDatum": Date.parse(endDate)===isNaN||Date.parse(startDate)>Date.parse(endDate)?props.auctionDetails[0].SlutDatum:endDate,
+                "Gruppkod": 2240,
+                "Utropspris": estimate<1||estimate?props.auctionDetails[0].Utropspris:estimate,
+                "SkapadAv": sessionStorage.getItem("user")
+                 
+        }
+            UpdateAuction(auction);
+        
+        
     }
     return (       
         <React.Fragment>

@@ -52,6 +52,7 @@ const DetailItem = React.memo((props) => {
                   </React.Fragment>)
                   })
                   setTableContent(() =>{
+                    console.log("tjo")
                     let x = props.auctionDetails[1].map((item) => {
                       return (<React.Fragment><tr><td>{item.Summa.toLocaleString()}</td><td>{item.Budgivare}</td></tr></React.Fragment>)})    
                       return x})
@@ -69,7 +70,7 @@ const DetailItem = React.memo((props) => {
                     return
                   })
         }
-    },[getDataToAuctionDetailList])
+    },[getDataToAuctionDetailList,DetailDataForAuction])
 
     useEffect(() => {
     },[TableContent, setTableContent,getDataToAuctionDetailList])
